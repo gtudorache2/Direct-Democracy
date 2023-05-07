@@ -1,5 +1,5 @@
 # DD
-Direct Democracy system on the Ethereum blocchain...
+Direct Democracy system on the Ethereum blockhain...
 
 The backend is written in Solidity, the frontend is written in Javascript with a hint of PHP and it includes :
 - A law system
