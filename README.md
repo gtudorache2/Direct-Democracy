@@ -11,9 +11,9 @@ The system currently needs reorganizing and cleaning...
 Instalation requirements :
 
 IPFS Daemon(/Desktop):
-    - Ubuntu : apt-get install ipfs-daemon
+- Ubuntu : apt-get install ipfs-daemon
 Blueimp jquery file upload (https://github.com/blueimp/jQuery-File-Upload)
-    - npm install blueimp-file-upload
+- npm install blueimp-file-upload
 
 ![h5]Preview photos
 ![image](https://user-images.githubusercontent.com/74644574/236688099-a4bcb7f8-e53b-40fd-817a-7f8c602a6f76.png)
