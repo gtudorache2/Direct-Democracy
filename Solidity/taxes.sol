@@ -3,28 +3,18 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 import "hardhat/console.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "OpenZeppelin/contracts/utils/Strings.sol";
+import "OpenZeppelin/contracts/utils/math/SafeMath.sol";
 /**
  * @title Owner
  * @dev Set & change owner
  */
 contract Taxes {
-
+ 
     address private owner;
-  /*  struct cStandardTaxes {
-        int256 PIT;
-        int256 CIT;
-        int256 VAT;
-        int256 Health;
-    }
-    struct cTaxProp {
-        int256 value;
-        int256 votes;
-    }
-*/
-    struct cCustomProp {
-        uint256 companyID;
+
+    struct cCustomTaxesProp {
+        string companyID;
         int8 tax;
         int256 votes;
         int256 total;
@@ -46,16 +36,9 @@ contract Taxes {
     }
 
     cVotes[] votes;
+    cVotes[] customVotes;
 
-   /* struct cCustomCIT {
-        uint256 companyID;
-        int8 tax;
-    }
-
-    cCustomCIT customCIT;
-    cStandardTaxes standardTaxes;
-*/
-    cCustomProp[] customProp;
+    cCustomTaxesProp[] customTaxesProp;
     cStandardTaxesProp[] standardTaxesProp;
     // event for EVM logging
     event OwnerSet(address indexed oldOwner, address indexed newOwner);
@@ -121,13 +104,16 @@ contract Taxes {
         );
     }
 
-    function proposeCustomTaxes(uint256 companyID, int8 tax) public payable {
-        customProp.push(cCustomProp({
-            companyID:companyID,
-            tax:tax,
-            votes:0,
-            total:0
-        }));
+    function proposeCustomTaxes(string memory companyID, int8 tax) public payable
+    {
+        customTaxesProp.push(
+            cCustomTaxesProp({
+                companyID:companyID,
+                tax:tax,
+                votes:0,
+                total:0
+            })
+        );
     }
 
     function getCurrentTaxes() public view returns(cStandardTaxesProp memory taxes)
@@ -150,19 +136,36 @@ contract Taxes {
 
         max = 0;
 
-      /*  if (customProp.length > 0)
-        for(uint256 i = 0; i < customProp.length; i++)
-        {
-            (bool b, int256 percent) = SafeMath.tryDiv(customProp[i].votes * 1000, customProp[i].total);
+        taxes = standardTaxesProp[maxStandard];
+    }
 
-            if((b) && (percent >= max))
+    function getCustomTaxes() public view returns(string memory taxes)
+    {
+        int256 max = 0;
+        uint256 maxStandard = 0;
+        //uint256 maxCustom = 0;
+
+        if (customTaxesProp.length > 0)
+        for(uint256 i = 0; i < customTaxesProp.length; i++)
+        {
+            //(bool b, int256 percent) = SafeMath.tryDiv(customTaxesProp[i].votes * 1000, customTaxesProp[i].total);
+                taxes = string.concat(customTaxesProp[i].companyID,'#', 
+                Strings.toString(customTaxesProp[i].tax),'#',
+                Strings.toString(customTaxesProp[i].votes),'#',
+                Strings.toString(customTaxesProp[i].total),'|', taxes);
+/*            if((b) && (percent >= max))
             {
                 max = percent;
-                maxCustom = i;
-            } 
-        }*/
 
-        taxes = standardTaxesProp[maxStandard];
+
+
+                maxStandard = i;
+            } */
+        }
+
+        max = 0;
+
+
     }
 
     function getVotes() public view returns (string memory v) {
@@ -201,5 +204,29 @@ contract Taxes {
         votes.push(vot);
         standardTaxesProp[id].votes += v;
         standardTaxesProp[id].total += 1;
+    }
+
+    function voteCustom(uint256 id, int256 v) public payable {
+        require(v >= -1, "Invalid vote");
+        require(v <= 1, "Invalid vote");
+
+        if (customVotes.length > 0)
+        for(uint256 i = 0; i < customVotes.length; i++)
+        {
+            if (customVotes[i].addr == msg.sender)
+            {
+                customTaxesProp[votes[i].id].votes -= customVotes[i].vote;
+                customTaxesProp[votes[i].id].total -= 1; 
+                delete customVotes[i];
+            }
+        }
+        cVotes memory vot = cVotes({
+            addr : msg.sender,
+            vote : v,
+            id : id
+        });
+        customVotes.push(vot); 
+        customTaxesProp[id].votes += v; 
+        customTaxesProp[id].total += 1;
     }
 } 

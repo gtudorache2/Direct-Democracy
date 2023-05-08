@@ -89,6 +89,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getCustomTaxes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "taxes",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "getOwner",
 				"outputs": [
 					{
@@ -116,9 +129,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "string",
 						"name": "companyID",
-						"type": "uint256"
+						"type": "string"
 					},
 					{
 						"internalType": "int8",
@@ -173,6 +186,24 @@
 					}
 				],
 				"name": "vote",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "v",
+						"type": "int256"
+					}
+				],
+				"name": "voteCustom",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -264,11 +295,11 @@
 			]
 		},
 		"taxes.sol": {
-			"keccak256": "0x9690f81c4c90de01158583207b7a0e67281fd030f6a1e0f69b6a1ad0491e3c2e",
+			"keccak256": "0x0277c7da17039de9d08bdfb1f25f2cb7a3e6cdcfdd27656bf9f1948be7dd6e0c",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://d62737cff5b647c1b1caf3eb71d95b9bcc732ac20326bcb9544ebad72667ecff",
-				"dweb:/ipfs/QmTeogjcgZFGsQT7mJkfcZ4RKH5j3UwhrEPhC3pyBfQmba"
+				"bzz-raw://93efc94e8025d0d234e704447dc6f5197d29e98622d56a5f42f2b42850726244",
+				"dweb:/ipfs/QmfE9Hvv9Rjf2UM4DciAFXksKPMDQ1QoRzkgQhzq2nj6Gd"
 			]
 		}
 	},
