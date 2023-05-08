@@ -11,7 +11,7 @@
 <link href="assets/css/style.css" rel="stylesheet">
 <header id="header" class="fixed-top ">
 <div class="container d-flex align-items-center">
-<a href="index.php" class="logo"><img style="border:inset 1px;" src="dd.jpg" alt="" class="img-fluid"></a>
+<a href="index.php" class="logo"><img style="border:inset 1px;" src="assets/img/dd.jpg" alt="" class="img-fluid"></a>
 <nav class="navbar bg" id="navbar">
       <ul>
         <li class="nav-item">
