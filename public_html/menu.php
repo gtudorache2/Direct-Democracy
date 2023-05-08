@@ -7,6 +7,9 @@
 <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<script src="engine/platform.js"></script>
+  <script src="engine/taxesPlatform.js" defer></script>
+
 
 <link href="assets/css/style.css" rel="stylesheet">
 <header id="header" class="fixed-top ">

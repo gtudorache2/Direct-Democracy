@@ -141,7 +141,7 @@ contract Taxes {
     function getCustomTaxes() public view returns(string memory taxes)
     {
         int256 max = 0;
-        uint256 maxStandard = 0;
+        //uint256 maxStandard = 0;
         //uint256 maxCustom = 0;
 
         if (customTaxesProp.length > 0)
