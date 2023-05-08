@@ -118,14 +118,6 @@
             "searching": true,
 			order: [[0, 'desc']],
 } );
-        $( document ).ready(function() {
-
-
-<?php if (is_numeric($_GET['id']))
-                {
-                    echo "processRevisions(".$_GET['id'].", false, $('#revisions'));";
-                }
-            ?>
 async function sub(data)
 {
 	try
@@ -145,6 +137,14 @@ async function sub(data)
 
 
 }
+$( document ).ready(function() {
+
+<?php if (is_numeric($_GET['id']))
+                {
+                    echo "processRevisions(".$_GET['id'].", false, $('#revisions'));";
+                }
+            ?>
+
         })
 var fu = $('#fileupload').fileupload({
 	autoUpload:true,
