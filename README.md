@@ -12,6 +12,7 @@ Instalation requirements :
 
 IPFS Daemon(/Desktop):
 - Ubuntu : apt-get install ipfs-daemon
+
 Blueimp jquery file upload (https://github.com/blueimp/jQuery-File-Upload)
 - npm install blueimp-file-upload
 
