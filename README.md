@@ -16,7 +16,12 @@ IPFS Daemon(/Desktop):
 Blueimp jquery file upload (https://github.com/blueimp/jQuery-File-Upload)
 - npm install blueimp-file-upload
 
-##[Preview photos]
+Special thanks :
+- For the Arsha theme : https://github.com/technext/arsha
+- Bootstrap : https://github.com/twbs/bootstrap
+- jQuery : https://github.com/jquery/jquery
+
+## [Preview photos]
 
 ![image](https://user-images.githubusercontent.com/74644574/236688099-a4bcb7f8-e53b-40fd-817a-7f8c602a6f76.png)
 ![image](https://user-images.githubusercontent.com/74644574/236688118-6151aaa9-25dc-4367-9e61-ce3dfbba4ef1.png)
