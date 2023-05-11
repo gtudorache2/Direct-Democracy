@@ -43,7 +43,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="law-title">Modal title</h5>
-        <button type="button" class="btn-close" onclick="$('#law-modal')..modal('hide')" aria-label="Close"></button>
+        <button type="button" class="btn-close" onclick="$('#law-modal').modal('hide')" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div contenteditable id="law-edit" rows="20" style="Width:100%"></div>

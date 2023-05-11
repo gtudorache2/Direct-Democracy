@@ -289,6 +289,34 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "articleId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "article",
+						"type": "string"
+					}
+				],
+				"name": "proposeArticleEdit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
 						"internalType": "string",
 						"name": "law",
 						"type": "string"
@@ -378,7 +406,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/utils/Strings.sol": {
+		"OpenZeppelin.mod/Strings.sol": {
 			"keccak256": "0x2626d8ab3dfdad0fad630c212ad146d59473d0f48b771784c61a7c1dbbea1f3f",
 			"license": "MIT",
 			"urls": [
@@ -386,7 +414,7 @@
 				"dweb:/ipfs/QmZsGyooD6emxB8JCuugRjnRYS2MPZEL586uuV7dgC8Jng"
 			]
 		},
-		"@openzeppelin/contracts/utils/math/Math.sol": {
+		"OpenZeppelin.mod/math/Math.sol": {
 			"keccak256": "0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6",
 			"license": "MIT",
 			"urls": [
@@ -394,7 +422,7 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
+		"OpenZeppelin.mod/math/SafeMath.sol": {
 			"keccak256": "0x10c1e0b85075dc314ca5a9cc6b5f7bca27f4e3333c4adc5dc1e6981eb385b2cb",
 			"license": "MIT",
 			"urls": [
@@ -402,7 +430,7 @@
 				"dweb:/ipfs/QmYqvi5k5nAGtKT59d5m84swQjByuNabu54RV2fvuMVLDV"
 			]
 		},
-		"@openzeppelin/contracts/utils/math/SignedMath.sol": {
+		"OpenZeppelin.mod/math/SignedMath.sol": {
 			"keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
 			"license": "MIT",
 			"urls": [
@@ -419,11 +447,11 @@
 			]
 		},
 		"laws.sol": {
-			"keccak256": "0x19046e762240170f0c7cc4da5c7f2554396ebe6db3726999e3c5149307d442d8",
+			"keccak256": "0x54edea1ca5881da40f4d3beb89afe0f1cbe61e7325b5cfeaecd9735cd469c52f",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://f052da896e7ac391ff88bcaf21196f290143c48f7db4b8582c6e17220365571c",
-				"dweb:/ipfs/QmaA1sQKzQE4E3ajfXEF8NBYhx8ULkDZDEdy4jio1odzQo"
+				"bzz-raw://1a147f7a696ad6e8ba3ea5b0829a8e94f04f6f163693eb27ebd78135166c008f",
+				"dweb:/ipfs/QmWqRT3wX3UDKSzDX1MTNDb28ZrZajKM8M1QE7WGeCFBkP"
 			]
 		}
 	},
