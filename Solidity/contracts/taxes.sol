@@ -2,11 +2,12 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-import "./OpenZeppelin.mod/Strings.sol";
-import "./OpenZeppelin.mod/math/SafeMath.sol";
+import "hardhat/console.sol";
+import "OpenZeppelin/contracts/utils/Strings.sol";
+import "OpenZeppelin/contracts/utils/math/SafeMath.sol";
 /**
- * @title Taxes
- * @dev Direct Democracy taxes System
+ * @title Owner
+ * @dev Set & change owner
  */
 contract Taxes {
  
@@ -57,6 +58,7 @@ contract Taxes {
      * @dev Set contract deployer as owner
      */
     constructor() {
+        console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
         standardTaxesProp.push(
@@ -140,7 +142,7 @@ contract Taxes {
     function getCustomTaxes() public view returns(string memory taxes)
     {
         int256 max = 0;
-     //   uint256 maxStandard = 0;
+        uint256 maxStandard = 0;
         //uint256 maxCustom = 0;
 
         if (customTaxesProp.length > 0)

@@ -2,11 +2,12 @@
 
 pragma solidity >=0.8.0 <0.9.0;
 
-import "./OpenZeppelin.mod/Strings.sol";
-import "./OpenZeppelin.mod/math/SafeMath.sol";
+import "hardhat/console.sol";
+import "OpenZeppelin.mod/Strings.sol";
+import "OpenZeppelin.mod/math/SafeMath.sol";
 /**
- * @title Laws
- * @dev Direct Democracy law system
+ * @title Owner
+ * @dev Set & change owner
  */
 contract Laws {
 
@@ -51,6 +52,7 @@ contract Laws {
      * @dev Set contract deployer as owner
      */
     constructor() {
+        console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
     }
@@ -97,6 +99,21 @@ contract Laws {
             total:0,
             version:block.timestamp
             });
+        laws[id].push(Law);
+    }
+
+    function proposeArticleEdit(uint256 id, uint256 articleId, uint256 version, string memory article) public payable {
+         cLaws memory Law = cLaws({
+            title:laws[id][version].title,
+            law: laws[id][version].law,
+            articles:laws[id][version].articles,
+            documents:laws[id][version].documents,
+            votes:0,
+            total:0,
+            version:block.timestamp
+            });
+
+            Law.articles[articleId] = article;
         laws[id].push(Law);
     }
 
