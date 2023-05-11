@@ -1,6 +1,38 @@
 var globId;
 const ERC20TransferABI = [
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "LawCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "oldOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnerSet",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -48,41 +80,32 @@ const ERC20TransferABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
 				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
-			}
-		],
-		"name": "LawCreated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "oldOwner",
-				"type": "address"
 			},
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "articleId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "article",
+				"type": "string"
 			}
 		],
-		"name": "OwnerSet",
-		"type": "event"
+		"name": "proposeArticleEdit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -134,6 +157,11 @@ const ERC20TransferABI = [
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -336,12 +364,12 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const DAI_ADDRESS = "0x1D926EEE62bE7496f2B2713D2bfA644e4d2326e1"
+const DAI_ADDRESS = "0xc1340DD87555962F490A71E5931C6b45A7d62c6A"
 
 
 const web3 = new Web3("ws://localhost:8545")
 
-const account =web3.eth.accounts.privateKeyToAccount("0x64dbc1730c1b567a901315df2ae08cc00971c84ed8aa3d9aa7a16a13a8d88d53");
+const account =web3.eth.accounts.privateKeyToAccount("0xd05e959fa119ef4950be2e113e16af864aa093bd418cb1d908394dc50cd4bddb");
 
 const daiToken = new web3.eth.Contract(ERC20TransferABI, DAI_ADDRESS)
 
@@ -426,7 +454,8 @@ return await daiToken.methods.getRevision(id, version).call(function (err, res) 
 	var i2 = 1;
 	for(var i=3; i < law.length; i++)
 	{
-		$('#edit-articles').append('Article '+i2+'<div contenteditable  class=\'form-control editor\' id=\'b'+i+'\'>'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'</div><hr>');
+		//aci
+		$('#edit-articles').append('Article '+i2+'<div contenteditable  class=\'form-control editor\' id=\'b'+i+'\'>'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'</div><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
 		i2++;
 	}
 
@@ -547,12 +576,39 @@ function proposeEdit(id, text, articles)
 	})
 	daiToken.methods
 	.proposeEdit(id, text, articles, files)
-	  .send({ from: account.address, gas:"30000000" }, function (err, res) {
+	  .send({ from: account.address, gas:"35000" }, function (err, res) {
 	    if (err) {
 	      console.log("An error occurred", err)
 	      return
 	    }
 	    console.log("Hash of the transaction: " + res)
+	  })
+}
+
+	    daiToken.events.LawCreated({}, function(err, data) {
+  if (err)
+    console.log("Error: " + err);
+   else
+   {
+	if(alert("Law no. "+data.returnValues.id+" created !"))
+	{
+		window.location.href = './save.php?id='+data.returnValues.id;
+	}
+   }
+});
+
+function proposeArticleEdit(id, articleId, version)
+{
+	article = $('#b'+(articleId+3)).html();
+	console.log(id+' '+articleId+' '+version);
+	daiToken.methods
+	.proposeArticleEdit(id, articleId, version, article)
+	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
+	    if (err) {
+	      console.log("An error occurred", err)
+	      return
+	    }
+	    alert('Law '+id+' article '+articleId+' proposed !')
 	  })
 }
 

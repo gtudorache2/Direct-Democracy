@@ -3,8 +3,8 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "OpenZeppelin.mod/Strings.sol";
+import "OpenZeppelin.mod/math/SafeMath.sol";
 /**
  * @title Owner
  * @dev Set & change owner
@@ -99,6 +99,21 @@ contract Laws {
             total:0,
             version:block.timestamp
             });
+        laws[id].push(Law);
+    }
+
+    function proposeArticleEdit(uint256 id, uint256 articleId, uint256 version, string memory article) public payable {
+         cLaws memory Law = cLaws({
+            title:laws[id][version].title,
+            law: laws[id][version].law,
+            articles:laws[id][version].articles,
+            documents:laws[id][version].documents,
+            votes:0,
+            total:0,
+            version:block.timestamp
+            });
+
+            Law.articles[articleId] = article;
         laws[id].push(Law);
     }
 

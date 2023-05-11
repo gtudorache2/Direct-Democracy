@@ -2,8 +2,9 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-import "./OpenZeppelin.mod/Strings.sol";
-import "./OpenZeppelin.mod/math/SafeMath.sol";
+import "hardhat/console.sol";
+import "OpenZeppelin/contracts/utils/Strings.sol";
+import "OpenZeppelin/contracts/utils/math/SafeMath.sol";
 /**
  * @title Owner
  * @dev Set & change owner
@@ -56,8 +57,8 @@ contract Taxes {
     /**
      * @dev Set contract deployer as owner
      */
-    constructor () {
-
+    constructor() {
+        console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
         standardTaxesProp.push(
@@ -141,16 +142,25 @@ contract Taxes {
     function getCustomTaxes() public view returns(string memory taxes)
     {
         int256 max = 0;
-        //uint256 maxStandard = 0;
+        uint256 maxStandard = 0;
         //uint256 maxCustom = 0;
 
         if (customTaxesProp.length > 0)
         for(uint256 i = 0; i < customTaxesProp.length; i++)
         {
+            //(bool b, int256 percent) = SafeMath.tryDiv(customTaxesProp[i].votes * 1000, customTaxesProp[i].total);
                 taxes = string.concat(customTaxesProp[i].companyID,'#', 
                 Strings.toString(customTaxesProp[i].tax),'#',
                 Strings.toString(customTaxesProp[i].votes),'#',
                 Strings.toString(customTaxesProp[i].total),'|', taxes);
+/*            if((b) && (percent >= max))
+            {
+                max = percent;
+
+
+
+                maxStandard = i;
+            } */
         }
 
         max = 0;
