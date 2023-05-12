@@ -1,0 +1,459 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "LawCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnerSet",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "law",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "articles",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "documents",
+						"type": "string[]"
+					}
+				],
+				"name": "createLaw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getCurrentVersion",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					}
+				],
+				"name": "getDocuments",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "documents",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					}
+				],
+				"name": "getLaw",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "title",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "law",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "articles",
+								"type": "string[]"
+							},
+							{
+								"internalType": "string[]",
+								"name": "documents",
+								"type": "string[]"
+							},
+							{
+								"internalType": "int256",
+								"name": "votes",
+								"type": "int256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "total",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "version",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Laws.cLaws",
+						"name": "L",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getLaw",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "law",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLawCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "count",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					}
+				],
+				"name": "getRevision",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "revision",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getRevisions",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "revisions",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "articleId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "article",
+						"type": "string"
+					}
+				],
+				"name": "proposeArticleEdit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "law",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "articles",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "documents",
+						"type": "string[]"
+					}
+				],
+				"name": "proposeEdit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "v",
+						"type": "int256"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Set & change owner",
+			"kind": "dev",
+			"methods": {
+				"changeOwner(address)": {
+					"details": "Change owner",
+					"params": {
+						"newOwner": "address of new owner"
+					}
+				},
+				"constructor": {
+					"details": "Set contract deployer as owner"
+				},
+				"getOwner()": {
+					"details": "Return owner address ",
+					"returns": {
+						"_0": "address of owner"
+					}
+				}
+			},
+			"title": "Owner",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"laws.sol": "Laws"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"OpenZeppelin.mod/Strings.sol": {
+			"keccak256": "0x2626d8ab3dfdad0fad630c212ad146d59473d0f48b771784c61a7c1dbbea1f3f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d7c144532f1e7c76ac95fb6a8f617c1f740d7a73442a907eb60910e99dfa1fbf",
+				"dweb:/ipfs/QmZsGyooD6emxB8JCuugRjnRYS2MPZEL586uuV7dgC8Jng"
+			]
+		},
+		"OpenZeppelin.mod/math/Math.sol": {
+			"keccak256": "0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://33bbf48cc069be677705037ba7520c22b1b622c23b33e1a71495f2d36549d40b",
+				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
+			]
+		},
+		"OpenZeppelin.mod/math/SafeMath.sol": {
+			"keccak256": "0x10c1e0b85075dc314ca5a9cc6b5f7bca27f4e3333c4adc5dc1e6981eb385b2cb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://02a8697db71395fc9d1a5c1d42682deb625315052d32c09de39753864d06d375",
+				"dweb:/ipfs/QmYqvi5k5nAGtKT59d5m84swQjByuNabu54RV2fvuMVLDV"
+			]
+		},
+		"OpenZeppelin.mod/math/SignedMath.sol": {
+			"keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
+				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x60b0215121bf25612a6739fb2f1ec35f31ee82e4a8216c032c8243d904ab3aa9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e29880d33dd479bb046ba306993d26ccb779a4b1d94a046cb3567f22948bb4d",
+				"dweb:/ipfs/QmfTY1qzPt5C63Wc7y6JqfZr5899NRvXYdCpyLzR5FXQic"
+			]
+		},
+		"laws.sol": {
+			"keccak256": "0x54edea1ca5881da40f4d3beb89afe0f1cbe61e7325b5cfeaecd9735cd469c52f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://1a147f7a696ad6e8ba3ea5b0829a8e94f04f6f163693eb27ebd78135166c008f",
+				"dweb:/ipfs/QmWqRT3wX3UDKSzDX1MTNDb28ZrZajKM8M1QE7WGeCFBkP"
+			]
+		}
+	},
+	"version": 1
+}
