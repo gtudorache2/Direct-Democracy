@@ -142,7 +142,7 @@ contract Taxes {
     function getCustomTaxes() public view returns(string memory taxes)
     {
         int256 max = 0;
-        uint256 maxStandard = 0;
+        //uint256 maxStandard = 0;
         //uint256 maxCustom = 0;
 
         if (customTaxesProp.length > 0)
@@ -228,5 +228,25 @@ contract Taxes {
         customVotes.push(vot); 
         customTaxesProp[id].votes += v; 
         customTaxesProp[id].total += 1;
+    }
+
+    function getTax(string memory companyID) public view returns(int256)
+    {
+        int256 tax = 0;
+        int256 max = 0;
+
+        for(uint256 i = 0; i < customTaxesProp.length; i++)
+        {
+            if (keccak256(abi.encodePacked(companyID)) == keccak256(abi.encodePacked(customTaxesProp[i].companyID)))
+            {
+         //       tax = customTaxesProp[i].tax;
+         //       return tax;
+                  int256 votes2 = customTaxesProp[i].votes*1000/customTaxesProp[i].total;
+                  if (votes2 > max)
+                    tax = customTaxesProp[i].tax;
+            }
+        }
+     
+        return tax;
     }
 } 

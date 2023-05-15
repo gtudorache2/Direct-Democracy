@@ -114,6 +114,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "companyID",
+						"type": "string"
+					}
+				],
+				"name": "getTax",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getVotes",
 				"outputs": [
@@ -295,11 +314,11 @@
 			]
 		},
 		"taxes.sol": {
-			"keccak256": "0x16f58cbf29126d28470f1c7fce83e4dc8dd9d689ee42b0905731f3f02eeb2df6",
+			"keccak256": "0xf5aac62d3f194087688b05e6584f2555875b81b94c6f9da0bb1ef6610ed6dc4a",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://a84b0cbaf2d84be0e50e2b2d92e941366e8fc4442d12eff70916cae13aeaa369",
-				"dweb:/ipfs/QmQit8BdzJNUi7Lv8j2mgQUrXG4EQudAXqFF7cK3v46kec"
+				"bzz-raw://aa03637e6edba0e43e420daf88397da80bf9a15aeffef83ff634197c8510f261",
+				"dweb:/ipfs/QmV1jBnHhQypGydjznSm8yWvxkLQjXQ3BqcmSYkcZbyEVn"
 			]
 		}
 	},
