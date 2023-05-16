@@ -12,7 +12,7 @@
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 		<script src="platform.js"></script>
-
+		<script src="https://cdn.tiny.cloud/1/59c8jr7dl9tfia6jfkos63gr0fw2tyrxmurns6ex1q6gff3r/tinymce/6/tinymce.min.js" referrerpolicy="origin">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	</head>
 	<body>
 	<?php require('menu.php'); ?>
@@ -42,8 +42,7 @@
               <span>Add files...</span>
               <input type="file" id="file-button" name="files" />
             </span>
-            <span class="btn btn-warning fileinput-button" onclick="$('#articles').append('<textarea class=\'form-control\' rows=\'5\'></textarea>'); return false">Add article</button>
-			</span>	
+            	
             <!-- The global file processing state -->
             <span class="fileupload-process"></span>
           </div>
@@ -119,6 +118,12 @@ var fu = $('#fileupload').fileupload({
 	})
 
 })
+
+tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
 	</script>
 
 <?php require_once('footer.php.php'); ?>

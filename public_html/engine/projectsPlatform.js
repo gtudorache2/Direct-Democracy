@@ -470,7 +470,8 @@ return await projects.methods.getRevision(id, version).call(function (err, res) 
 	for(var i=4; i < law.length; i+=2)
 	{
 		//aci
-		$('#edit-articles').append('Article '+i2+'<div contenteditable  class=\'form-control editor\' id=\'b'+i+'\'>'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'</div><input type="number" value="'+law[i+1]+'" id="v'+i+'"><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
+		addTiny(law[i], "b"+i);
+		$('#edit-article').append('<input type="number" value="'+law[i+1]+'" id="v'+i+'"><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
 		i2++;
 	}
 
