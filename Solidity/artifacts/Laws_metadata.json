@@ -15,19 +15,6 @@
 				"inputs": [
 					{
 						"indexed": true,
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"name": "LawCreated",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
 						"internalType": "address",
 						"name": "oldOwner",
 						"type": "address"
@@ -40,6 +27,19 @@
 					}
 				],
 				"name": "OwnerSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "ProjectCreated",
 				"type": "event"
 			},
 			{
@@ -64,21 +64,21 @@
 					},
 					{
 						"internalType": "string",
-						"name": "law",
+						"name": "project",
 						"type": "string"
 					},
 					{
 						"internalType": "string[]",
-						"name": "articles",
+						"name": "enhanchments",
 						"type": "string[]"
 					},
 					{
 						"internalType": "string[]",
-						"name": "documents",
+						"name": "attachments",
 						"type": "string[]"
 					}
 				],
-				"name": "createLaw",
+				"name": "createProject",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -95,25 +95,6 @@
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
-					}
-				],
-				"name": "getCurrentVersion",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "version",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
@@ -121,7 +102,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getDocuments",
+				"name": "getAttachments",
 				"outputs": [
 					{
 						"internalType": "string",
@@ -138,75 +119,14 @@
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
-					},
+					}
+				],
+				"name": "getCurrentVersion",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "version",
 						"type": "uint256"
-					}
-				],
-				"name": "getLaw",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "title",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "law",
-								"type": "string"
-							},
-							{
-								"internalType": "string[]",
-								"name": "articles",
-								"type": "string[]"
-							},
-							{
-								"internalType": "string[]",
-								"name": "documents",
-								"type": "string[]"
-							},
-							{
-								"internalType": "int256",
-								"name": "votes",
-								"type": "int256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "total",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "version",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct Laws.cLaws",
-						"name": "L",
-						"type": "tuple"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"name": "getLaw",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "law",
-						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -233,6 +153,25 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getProject",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "law",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -290,21 +229,82 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "articleId",
+						"name": "version",
 						"type": "uint256"
-					},
+					}
+				],
+				"name": "getSpecificProject",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "title",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "project",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "enhanchments",
+								"type": "string[]"
+							},
+							{
+								"internalType": "string[]",
+								"name": "attachments",
+								"type": "string[]"
+							},
+							{
+								"internalType": "int256",
+								"name": "votes",
+								"type": "int256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "total",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "version",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Laws.cProjects",
+						"name": "L",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "version",
+						"name": "id",
 						"type": "uint256"
 					},
 					{
 						"internalType": "string",
-						"name": "article",
+						"name": "project",
 						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "enhanchments",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "attachments",
+						"type": "string[]"
 					}
 				],
-				"name": "proposeArticleEdit",
+				"name": "proposeEdit",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -317,22 +317,22 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "eId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					},
+					{
 						"internalType": "string",
-						"name": "law",
+						"name": "enhnancement",
 						"type": "string"
-					},
-					{
-						"internalType": "string[]",
-						"name": "articles",
-						"type": "string[]"
-					},
-					{
-						"internalType": "string[]",
-						"name": "documents",
-						"type": "string[]"
 					}
 				],
-				"name": "proposeEdit",
+				"name": "proposeEnhanchmentEdit",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -392,7 +392,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"laws.sol": "Laws"
+			"projects.sol": "Laws"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -446,12 +446,12 @@
 				"dweb:/ipfs/QmfTY1qzPt5C63Wc7y6JqfZr5899NRvXYdCpyLzR5FXQic"
 			]
 		},
-		"laws.sol": {
-			"keccak256": "0x54edea1ca5881da40f4d3beb89afe0f1cbe61e7325b5cfeaecd9735cd469c52f",
+		"projects.sol": {
+			"keccak256": "0xb7f941189a30d7277914141effe6f2e6edc3d07d477487eb805e19773aa1c74b",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://1a147f7a696ad6e8ba3ea5b0829a8e94f04f6f163693eb27ebd78135166c008f",
-				"dweb:/ipfs/QmWqRT3wX3UDKSzDX1MTNDb28ZrZajKM8M1QE7WGeCFBkP"
+				"bzz-raw://804b6a1b67fc2c6736ed80842828811cdf93bbd6a6790f8dd1c285fab70c8faf",
+				"dweb:/ipfs/QmVT3U7b7pDRPhoyJW9zJv6istvtKY9SYcKAa62JrHNPZn"
 			]
 		}
 	},
