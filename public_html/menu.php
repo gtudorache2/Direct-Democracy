@@ -8,8 +8,8 @@
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 <script src="engine/platform.js"></script>
-  <script src="engine/taxesPlatform.js" defer></script>
-
+<script src="engine/taxesPlatform.js" defer></script>
+<script src="engine/projectsPlatform.js" defer></script>
 
 <link href="assets/css/style.css" rel="stylesheet">
 <header id="header" class="fixed-top ">
@@ -40,6 +40,14 @@
             <li class="dropdown-item"><a href="other_taxes.php">Other Taxes</a></li>
             <div class="dropdown-divider"></div>
             <li class="dropdown-item"><a href="company_types.php">Company Types</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+        <a href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects<i class="bi bi-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+          <li class="dropdown-item"><a href="new_project.php">New project</a></li>
+            <li class="dropdown-item"><a href="projects.php">Project propositions</a></li>
+            <li class="dropdown-item"><a href="vote_project.php">Vote project</a></li>
             </ul>
         </li>
       </ul>

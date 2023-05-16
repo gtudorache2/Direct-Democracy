@@ -11,6 +11,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/web3@1.2.11/dist/web3.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+		<script src="platform.js"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	</head>
 	<body>
@@ -20,17 +21,11 @@
 	<div class="container">
 		<div class="card card-default">
 			<div class="card-body">
-			<div class="panel-title h4">Create Law</div>
+			<div class="panel-title h4">Create Project</div>
 			<div class="card-text">
 				Title : <input class="form-control" id="title" /><br>
-				Law : <textarea class="form-control" id="law" rows="5"></textarea></br>		
-				<div class="card card-default">
-					<div class="card-body">
-					<div class="panel-title h5">Articles</div>
-					<div class="card-text" id="articles" >
-						<textarea class="form-control" rows="5"></textarea>
-					</div>
-				</div>
+				Project : <textarea class="form-control" id="law" rows="5"></textarea></br>	
+                Value : <input class="form-control" type="number" id="value" value="1" /><br>
 				<hr>
 				<form
         id="fileupload"
@@ -77,8 +72,8 @@
       </form>
 
 
-				<button class="btn btn-warning" onclick="createLaw($('#title').val(), $('#law').val())">Create Law</button><br>
-			</div>
+				<button class="btn btn-warning" style="Width:100%" onclick="createProject($('#title').val(), $('#law').val(), $('#value').val())">Create Project</button><br>
+	
 			</div>		
 		</div>
 	</div>

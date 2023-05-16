@@ -1,17 +1,9 @@
 var globId;
-const ERC20TransferABI = [
+const projectsABI = [
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "LawCreated",
-		"type": "event"
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"anonymous": false,
@@ -30,6 +22,19 @@ const ERC20TransferABI = [
 			}
 		],
 		"name": "OwnerSet",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "ProjectCreated",
 		"type": "event"
 	},
 	{
@@ -54,21 +59,21 @@ const ERC20TransferABI = [
 			},
 			{
 				"internalType": "string",
-				"name": "law",
+				"name": "project",
 				"type": "string"
 			},
 			{
 				"internalType": "string[]",
-				"name": "articles",
+				"name": "attachments",
 				"type": "string[]"
 			},
 			{
-				"internalType": "string[]",
-				"name": "documents",
-				"type": "string[]"
+				"internalType": "int256",
+				"name": "value",
+				"type": "int256"
 			}
 		],
-		"name": "createLaw",
+		"name": "createProject",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -88,80 +93,20 @@ const ERC20TransferABI = [
 			},
 			{
 				"internalType": "uint256",
-				"name": "articleId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
 				"name": "version",
 				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "article",
-				"type": "string"
 			}
 		],
-		"name": "proposeArticleEdit",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
+		"name": "getAttachments",
+		"outputs": [
 			{
 				"internalType": "string",
-				"name": "law",
-				"type": "string"
-			},
-			{
-				"internalType": "string[]",
-				"name": "articles",
-				"type": "string[]"
-			},
-			{
-				"internalType": "string[]",
 				"name": "documents",
-				"type": "string[]"
+				"type": "string"
 			}
 		],
-		"name": "proposeEdit",
-		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "version",
-				"type": "uint256"
-			},
-			{
-				"internalType": "int256",
-				"name": "v",
-				"type": "int256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -183,85 +128,13 @@ const ERC20TransferABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "version",
-				"type": "uint256"
-			}
-		],
-		"name": "getDocuments",
+		"inputs": [],
+		"name": "getOwner",
 		"outputs": [
 			{
-				"internalType": "string",
-				"name": "documents",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "version",
-				"type": "uint256"
-			}
-		],
-		"name": "getLaw",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "title",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "law",
-						"type": "string"
-					},
-					{
-						"internalType": "string[]",
-						"name": "articles",
-						"type": "string[]"
-					},
-					{
-						"internalType": "string[]",
-						"name": "documents",
-						"type": "string[]"
-					},
-					{
-						"internalType": "int256",
-						"name": "votes",
-						"type": "int256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "total",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "version",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Laws.cLaws",
-				"name": "L",
-				"type": "tuple"
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -275,7 +148,7 @@ const ERC20TransferABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "getLaw",
+		"name": "getProject",
 		"outputs": [
 			{
 				"internalType": "string",
@@ -288,25 +161,12 @@ const ERC20TransferABI = [
 	},
 	{
 		"inputs": [],
-		"name": "getLawCount",
+		"name": "getProjectCount",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "count",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getOwner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -354,9 +214,168 @@ const ERC20TransferABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			}
+		],
+		"name": "getSpecificProject",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "project",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "enhanchments",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "attachments",
+						"type": "string[]"
+					},
+					{
+						"internalType": "int256",
+						"name": "votes",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "total",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "version",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "value",
+						"type": "int256"
+					}
+				],
+				"internalType": "struct Projects.cProjects",
+				"name": "L",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "project",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "enhanchments",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "values",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "attachments",
+				"type": "string[]"
+			}
+		],
+		"name": "proposeEdit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "eId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "enhanchment",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "proposeEnhanchmentEdit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			},
+			{
+				"internalType": "int256",
+				"name": "v",
+				"type": "int256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
 	}
 ]
-
 function calcHeight(value) {
   let numberOfLineBreaks = (value.match(/\n/g) || []).length;
   // min-height + lines x line-height + padding + border
@@ -364,20 +383,16 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const DAI_ADDRESS = "0xc1340DD87555962F490A71E5931C6b45A7d62c6A"
+const PROJECTS_CONTRACT_ADDRESS = "0x9aAb7b5625a9BDe7fBb599FB05DCd829230C4712"
 
 
-const web3 = new Web3("ws://localhost:8545")
-
-const account =web3.eth.accounts.privateKeyToAccount("0x0eceab7600819d592816d67d4fe0696bc9692a69d8480df42ad20722e066c3ee");
-
-const daiToken = new web3.eth.Contract(ERC20TransferABI, DAI_ADDRESS)
+const projects = new web3.eth.Contract(projectsABI, PROJECTS_CONTRACT_ADDRESS)
 
 
 
-async function getRevisions(id)
+async function getProjectRevisions(id)
 {
-return await daiToken.methods.getRevisions(parseInt(id)).call(function (err, res) {
+return await projects.methods.getRevisions(parseInt(id)).call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -385,9 +400,9 @@ return await daiToken.methods.getRevisions(parseInt(id)).call(function (err, res
 	return res
 })}
 
-async function getLawCount()
+async function getProjectCount()
 {
-return await daiToken.methods.getLawCount().call(function (err, res) {
+return await projects.methods.getProjectCount().call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -395,9 +410,9 @@ return await daiToken.methods.getLawCount().call(function (err, res) {
 	return res
 })}
 
-async function getLaw(id)
+async function getProject(id)
 {
-return await daiToken.methods.getLaw(id).call(function (err, res) {
+return await projects.methods.getProject(id).call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -405,23 +420,23 @@ return await daiToken.methods.getLaw(id).call(function (err, res) {
 	return res
 })}
 
-async function getLastLaws()
+async function getLastProjects()
 {
 	var laws = Array();
-	var count = await getLawCount();
+	var count = await getProjectsCount();
 
 	if (count > 10) count = 10
 
 	for (var i = count-1; i >= 0; i--)
 	{
-		laws.push(await getLaw(i))
+		laws.push(await getProject(i))
 	}
 	return laws;
 }
 
-async function getDocuments(id, version)
+async function getAttachments(id, version)
 {
-return await daiToken.methods.getDocuments(parseInt(id), version).call(function (err, res) {
+return await projects.methods.getAttachments(parseInt(id), version).call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -435,9 +450,9 @@ return await daiToken.methods.getDocuments(parseInt(id), version).call(function 
 	return res
 })}
 
-async function getRevision(id, version)
+async function getProjectRevision(id, version)
 {
-return await daiToken.methods.getRevision(id, version).call(function (err, res) {
+return await projects.methods.getRevision(id, version).call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -447,24 +462,24 @@ return await daiToken.methods.getRevision(id, version).call(function (err, res) 
 	$('#file-presentation').html('');
 	$('#law-title').text(law[1]);
 	$('#law-edit').text(law[2].replace(/(?:\r\n|\r|\n)/g, '<br>'))
-
+	$('#value').text('Value : '+law[3])
 	$('#law-modal').modal('toggle');
 	globId = id;
 	$('#edit-articles').html('');
 	var i2 = 1;
-	for(var i=3; i < law.length; i++)
+	for(var i=4; i < law.length; i+=2)
 	{
 		//aci
-		$('#edit-articles').append('Article '+i2+'<div contenteditable  class=\'form-control editor\' id=\'b'+i+'\'>'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'</div><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
+		$('#edit-articles').append('Article '+i2+'<div contenteditable  class=\'form-control editor\' id=\'b'+i+'\'>'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'</div><input type="number" value="'+law[i+1]+'" id="v'+i+'"><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
 		i2++;
 	}
 
-	getDocuments(id, version);
+	getAttachments(id, version);
 })}
 
-async function getRevisionVote(id, version)
+async function getProjectRevisionVote(id, version)
 {
-return await daiToken.methods.getRevision(id, version).call(function (err, res) {
+return await projects.methods.getRevision(id, version).call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -472,27 +487,27 @@ return await daiToken.methods.getRevision(id, version).call(function (err, res) 
 	var law = res.split('#');
 	console.log(res);
 	$('#law-title').text(law[1]);
-	$('#law-edit').html(law[2].replace(/(?:\r\n|\r|\n)/g, '<br>'));
+	$('#law-edit').html(law[2].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br>Value : '+law[3]);
 	$('#law-modal').modal('toggle');
 	globId = id;
 	$('#edit-articles').html('');
 	var i2 = 1;
-	for(var i=3; i < law.length; i++)
+	for(var i=4; i < law.length; i+=2)
 	{
-		$('#edit-articles').append('<dt>Article '+i2+'</dt><li   >'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'</li>');
+		$('#edit-articles').append('<dt>Enhanchment '+i2+'</dt><li   >'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br> Value : '+law[i+1]+'</li>');
 		i2++;
 	}
 	$('#edit-articles').append('<div id="vote-buttons"></div>');
-	$('#vote-buttons').append('<button class="btn btn-success b" onclick="vote(\''+id+'\',\''+version+'\',\'1\')">Yes</button>')
-	$('#vote-buttons').append('<button class="btn btn-warning b" onclick="vote('+id+','+version+',0)">Abstain</button>')
-	$('#vote-buttons').append('<button class="btn btn-danger b" onclick="vote('+id+','+version+',-1)">No</button>')
+	$('#vote-buttons').append('<button class="btn btn-success b" onclick="voteProject(\''+id+'\',\''+version+'\',\'1\')">Yes</button>')
+	$('#vote-buttons').append('<button class="btn btn-warning b" onclick="voteProject('+id+','+version+',0)">Abstain</button>')
+	$('#vote-buttons').append('<button class="btn btn-danger b" onclick="voteProject('+id+','+version+',-1)">No</button>')
 })}
 
 
-async function processRevisions(id, vote=false, tab=null)	{
+async function processProjectRevisions(id, vote=false, tab=null)	{
 	var oldText = [];
 	rev.clear().draw();
-	var res = await getRevisions(id)
+	var res = await getProjectRevisions(id)
 	var rows = res.split('|');
 	    for (var i = 0; i < rows.length-1; i++) {
 	    	var row = rows[i].split('#');
@@ -521,21 +536,21 @@ async function processRevisions(id, vote=false, tab=null)	{
 	    	}
 	    	
 	    	if (!vote)
-	    		rev.row.add([row[0],'<span class="h5">'+row[4]+'</span><span class="h4">/'+row[5]+'</span>','<button onclick="getRevision('+id+', '+row[0]+')">Revise</button>',row[1],'<span class="td">'+text+'</span>',ts.toLocaleTimeString('ro-RO', options)]).draw();
+	    		rev.row.add([row[0],'<span class="h5">'+row[4]+'</span><span class="h4">/'+row[5]+'</span>','<button onclick="getProjectRevision('+id+', '+row[0]+')">Revise</button>',row[1],'<span class="td">'+text+'</span>',ts.toLocaleTimeString('ro-RO', options)]).draw();
 	    	else
-	    		rev.row.add([row[0],'<span class="h5">'+row[4]+'</span><span class="h4">/'+row[5]+'</span>','<button onclick="getRevisionVote('+id+', '+row[0]+')">Vote</button>',row[1],'<span class="td">'+text+'</span>',ts.toLocaleTimeString('ro-RO', options)]).draw();	    	
+	    		rev.row.add([row[0],'<span class="h5">'+row[4]+'</span><span class="h4">/'+row[5]+'</span>','<button onclick="getProjectRevisionVote('+id+', '+row[0]+')">Vote</button>',row[1],'<span class="td">'+text+'</span>',ts.toLocaleTimeString('ro-RO', options)]).draw();	    	
 	    	oldText = diff.items;
 	}
 }
 
-function createLaw(title, text)
+function createProject(title, text, value)
 {
 	articles = []
 	$('#articles').find('textarea').each((i, elem) => {
 		articles.push(elem.value);
 	})
-	daiToken.methods
-	.createLaw(title, text, articles, files)
+	projects.methods
+	.createProject(title, text, files, value)
 	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
 	    if (err) {
 	      console.log("An error occurred", err)
@@ -546,12 +561,12 @@ function createLaw(title, text)
 	  })
 }
 
-function vote(id, version, vote)
+function voteProject(id, version, vote)
 {
 var e2
 try
 {
-	daiToken.methods
+	projects.methods
 	.vote(id, version, vote)
 	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
 	    if (err) {
@@ -568,15 +583,20 @@ catch (e)
 }
 }
 
-function proposeEdit(id, text, articles)
+function proposeProjectEdit(id, text, value)
 {
 	articles = []
+    values = []
 	$('#edit-articles').find('div.editor').each((i, elem) => {
 		articles.push(elem.innerText.replace(/(?:\r\n|\r|\n)/g, '<br>'));
 	})
-	daiToken.methods
-	.proposeEdit(id, text, articles, files)
-	  .send({ from: account.address, gas:"35000" }, function (err, res) {
+	$('#edit-articles').find('input[type=number').each((i, elem) => {
+		values.push(elem.value);
+	})
+    console.log(values);
+	projects.methods
+	.proposeEdit(id, text, articles, values, files)
+	  .send({ from: account.address, gas:"350000" }, function (err, res) {
 	    if (err) {
 	      console.log("An error occurred", err)
 	      return
@@ -585,39 +605,39 @@ function proposeEdit(id, text, articles)
 	  })
 }
 
-	    daiToken.events.LawCreated({}, function(err, data) {
+	    projects.events.ProjectCreated({}, function(err, data) {
   if (err)
     console.log("Error: " + err);
    else
    {
-	if(alert("Law no. "+data.returnValues.id+" created !"))
+	if(alert("Project no. "+data.returnValues.id+" created !"))
 	{
 		window.location.href = './save.php?id='+data.returnValues.id;
 	}
    }
 });
 
-function proposeArticleEdit(id, articleId, version)
+function proposeEnhanchmentEdit(id, articleId, version, value)
 {
 	article = $('#b'+(articleId+3)).html();
 	console.log(id+' '+articleId+' '+version);
-	daiToken.methods
-	.proposeArticleEdit(id, articleId, version, article)
+	projects.methods
+	.proposeEnhanchmentEdit(id, articleId, version, article, value)
 	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
 	    if (err) {
 	      console.log("An error occurred", err)
 	      return
 	    }
-	    alert('Law '+id+' article '+articleId+' proposed !')
+	    alert('Project '+id+' article '+articleId+' proposed !')
 	  })
 }
 
-	    daiToken.events.LawCreated({}, function(err, data) {
+	    projects.events.ProjectCreated({}, function(err, data) {
   if (err)
     console.log("Error: " + err);
    else
    {
-	if(alert("Law no. "+data.returnValues.id+" created !"))
+	if(alert("Project no. "+data.returnValues.id+" created !"))
 	{
 		window.location.href = './save.php?id='+data.returnValues.id;
 	}
