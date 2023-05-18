@@ -12,7 +12,7 @@
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 		<script src="platform.js"></script>
-		<script src="https://cdn.tiny.cloud/1/59c8jr7dl9tfia6jfkos63gr0fw2tyrxmurns6ex1q6gff3r/tinymce/6/tinymce.min.js" referrerpolicy="origin">
+		<script src="https://cdn.tiny.cloud/1/59c8jr7dl9tfia6jfkos63gr0fw2tyrxmurns6ex1q6gff3r/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	</head>
 	<body>
 	<?php require('menu.php'); ?>
@@ -24,7 +24,7 @@
 			<div class="panel-title h4">Create Project</div>
 			<div class="card-text">
 				Title : <input class="form-control" id="title" /><br>
-				Project : <textarea class="form-control" id="law" rows="5"></textarea></br>	
+				Project : <textarea class="form-control" id="project" rows="5"></textarea></br>	
                 Value : <input class="form-control" type="number" id="value" value="1" /><br>
 				<hr>
 				<form
@@ -71,7 +71,7 @@
       </form>
 
 
-				<button class="btn btn-warning" style="Width:100%" onclick="createProject($('#title').val(), $('#law').val(), $('#value').val())">Create Project</button><br>
+				<button class="btn btn-warning" style="Width:100%" onclick="createProject($('#title').val(), $('#project').val(), $('#value').val())">Create Project</button><br>
 	
 			</div>		
 		</div>

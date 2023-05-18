@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
+  <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script>		var files = Array(); var rev;</script>
+		<script>		var files = Array(); var rev; var tiny = Array();</script>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-		<script src="https://cdn.tiny.cloud/1/59c8jr7dl9tfia6jfkos63gr0fw2tyrxmurns6ex1q6gff3r/tinymce/6/tinymce.min.js" referrerpolicy="origin">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>		<script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>	
     <script src="https://cdn.jsdelivr.net/npm/web3@1.2.11/dist/web3.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	</head>
-
-    </head>
-        <body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.tiny.cloud/1/59c8jr7dl9tfia6jfkos63gr0fw2tyrxmurns6ex1q6gff3r/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  </head>
+    <body>
 	<?php require('menu.php'); ?>
     <main id="main">
     <section id="clients" class="clients section-bg">
@@ -38,22 +39,24 @@
 				</div>
 			</div>
 		</div>
-<div id="law-modal" class="modal fade" tabindex="-1">
+<div id="project-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="law-title">Modal title</h5>
-        <button type="button" class="btn-close" onclick="$('#law-modal').modal('hide')" aria-label="Close"></button>
+        <h5 class="modal-title" id="project-title">Modal title</h5>
+        <button type="button" class="btn-close" onclick="$('#project-modal').modal('hide')" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div contenteditable id="law-edit" rows="20" style="Width:100%"></div>
+        <div id="edit">
+        <div contenteditable id="project-edit" rows="20" style="Width:100%"></div>
+</div>
         <div id="value" style="Width:100%"></div>
         <hr>
 		<div id="edit-articles" style="margin-left:25px;border:1px solid lightgrey">
 				<textarea class="form-control" rows="5"></textarea>
 			</div>
 			<hr>				
-			<button class="btn btn-warning" onclick="addTiny('','');">Add enhanchment</button>
+			<button class="btn btn-warning" onclick="addTiny('','', 1);">Add enhanchment</button>
 
             <hr>
 
@@ -75,6 +78,7 @@
             </span>
             <!-- The global file processing state -->
             <span class="fileupload-process"></span>
+            </span>
           </div>
           <!-- The global progress state -->
           <div class="col-lg-5 fileupload-progress fade">
@@ -102,12 +106,13 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#law-modal').modal('hide')">Close</button>
-        <button type="button" class="btn btn-primary" onclick="proposeProjectEdit(globId, $('#law-edit').text(), $('#value').val());$('#law-modal').modal('hide')">Save changes</button>
+        <button type="button" class="btn btn-secondary" onclick="$('#project-modal').modal('hide')">Close</button>
+        <button type="button" class="btn btn-primary" onclick="proposeProjectEdit(globId, $('#project-edit').html(), $('#value').val());$('#project-modal').modal('hide')">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
 </section>
 </main>
 	</body>
@@ -153,16 +158,16 @@ var fu = $('#fileupload').fileupload({
 		}
 	})
 
-  function addTiny(contents, id)
+  function addTiny(contents, id, val, mainClass = '#edit-articles')
   {
-    $('#edit-articles').append('<div contenteditable id="'+id+'" class=\'form-control editor\'>'+contents+'<br></div>Value : <input type=\'number\' value=\'1\'>'); 
-    tinymce.init({
-        selector: 'div[contenteditable]',
+    $(mainClass).append('<div contenteditable id="b'+id+'" class="form-control editor">'+contents+'<br></div>Value : <input type="number" id="v'+id+'" value="'+val+'">'); 
+    tiny.push(tinymce.init({
+        selector: '#b'+id,
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-      });
+      }));
   }
-  addTiny("")
+ // addTiny("", "", 1)
 	</script>
     	<script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
 	<script src="node_modules/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>

@@ -1,11 +1,6 @@
 var globId;
 const projectsABI = [
 	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -83,6 +78,100 @@ const projectsABI = [
 		],
 		"stateMutability": "payable",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "project",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "enhanchments",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "values",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "attachments",
+				"type": "string[]"
+			}
+		],
+		"name": "proposeEdit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "eId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "enhanchment",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "proposeEnhanchmentEdit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "version",
+				"type": "uint256"
+			},
+			{
+				"internalType": "int256",
+				"name": "v",
+				"type": "int256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -285,97 +374,9 @@ const projectsABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "project",
-				"type": "string"
-			},
-			{
-				"internalType": "string[]",
-				"name": "enhanchments",
-				"type": "string[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "values",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "string[]",
-				"name": "attachments",
-				"type": "string[]"
-			}
-		],
-		"name": "proposeEdit",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "eId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "version",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "enhanchment",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "proposeEnhanchmentEdit",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "version",
-				"type": "uint256"
-			},
-			{
-				"internalType": "int256",
-				"name": "v",
-				"type": "int256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
 	}
 ]
+
 function calcHeight(value) {
   let numberOfLineBreaks = (value.match(/\n/g) || []).length;
   // min-height + lines x line-height + padding + border
@@ -383,7 +384,7 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const PROJECTS_CONTRACT_ADDRESS = "0x9aAb7b5625a9BDe7fBb599FB05DCd829230C4712"
+const PROJECTS_CONTRACT_ADDRESS = "0xaA090558E20520365140250c2065A35912f803b9";
 
 
 const projects = new web3.eth.Contract(projectsABI, PROJECTS_CONTRACT_ADDRESS)
@@ -422,16 +423,16 @@ return await projects.methods.getProject(id).call(function (err, res) {
 
 async function getLastProjects()
 {
-	var laws = Array();
+	var projects = Array();
 	var count = await getProjectsCount();
 
 	if (count > 10) count = 10
 
 	for (var i = count-1; i >= 0; i--)
 	{
-		laws.push(await getProject(i))
+		projects.push(await getProject(i))
 	}
-	return laws;
+	return projects;
 }
 
 async function getAttachments(id, version)
@@ -452,26 +453,34 @@ return await projects.methods.getAttachments(parseInt(id), version).call(functio
 
 async function getProjectRevision(id, version)
 {
+	tiny = Array();
 return await projects.methods.getRevision(id, version).call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
 	  }
-	var law = res.split('#');
-	console.log(res);
+	var project = res.split('#');
+	console.log(project);
 	$('#file-presentation').html('');
-	$('#law-title').text(law[1]);
-	$('#law-edit').text(law[2].replace(/(?:\r\n|\r|\n)/g, '<br>'))
-	$('#value').text('Value : '+law[3])
-	$('#law-modal').modal('toggle');
+	$('#project-title').text(project[1]);
+	$('#project-edit').html(project[2]);
+	$('#value').text('Value : '+project[3])
+	$('#project-modal').modal('toggle');
 	globId = id;
 	$('#edit-articles').html('');
 	var i2 = 1;
-	for(var i=4; i < law.length; i+=2)
+
+	tinymce.init({
+        selector: '#project-edit',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      })
+
+	for(var i=4; i < project.length; i+=2)
 	{
 		//aci
-		addTiny(law[i], "b"+i);
-		$('#edit-article').append('<input type="number" value="'+law[i+1]+'" id="v'+i+'"><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
+		addTiny(project[i], i2, project[i+1]);
+//		$('#edit-articles').append('<input type="number" value="'+project[i+1]+'" id="v'+i+'"><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
 		i2++;
 	}
 
@@ -485,17 +494,17 @@ return await projects.methods.getRevision(id, version).call(function (err, res) 
 	    console.log("An error occurred", err)
 	    return
 	  }
-	var law = res.split('#');
+	var project = res.split('#');
 	console.log(res);
-	$('#law-title').text(law[1]);
-	$('#law-edit').html(law[2].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br>Value : '+law[3]);
-	$('#law-modal').modal('toggle');
+	$('#project-title').text(project[1]);
+	$('#project-edit').html(project[2].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br>Value : '+project[3]);
+	$('#project-modal').modal('toggle');
 	globId = id;
 	$('#edit-articles').html('');
 	var i2 = 1;
-	for(var i=4; i < law.length; i+=2)
+	for(var i=4; i < project.length; i+=2)
 	{
-		$('#edit-articles').append('<dt>Enhanchment '+i2+'</dt><li   >'+law[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br> Value : '+law[i+1]+'</li>');
+		$('#edit-articles').append('<dt>Enhanchment '+i2+'</dt><li   >'+project[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br> Value : '+project[i+1]+'</li>');
 		i2++;
 	}
 	$('#edit-articles').append('<div id="vote-buttons"></div>');
@@ -588,10 +597,11 @@ function proposeProjectEdit(id, text, value)
 {
 	articles = []
     values = []
-	$('#edit-articles').find('div.editor').each((i, elem) => {
-		articles.push(elem.innerText.replace(/(?:\r\n|\r|\n)/g, '<br>'));
-	})
-	$('#edit-articles').find('input[type=number').each((i, elem) => {
+	for (var i = 0; i < tiny.length;i++)
+	{
+		articles.push(tinymce.get("b"+(i+1)).getContent());
+	}
+	$('#edit-articles').find('input[type=number]').each((i, elem) => {
 		values.push(elem.value);
 	})
     console.log(values);
