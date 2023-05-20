@@ -10,8 +10,6 @@
 <script src="engine/platform.js"></script>
 <script src="engine/taxesPlatform.js" defer></script>
 <script src="engine/projectsPlatform.js" defer></script>
-<link rel="stylesheet" href="assets/css/style.css" crossorigin="anonymous">
-
 <link href="assets/css/style.css" rel="stylesheet">
 <header id="header" class="fixed-top ">
 <div class="container d-flex align-items-center">

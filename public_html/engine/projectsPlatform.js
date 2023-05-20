@@ -497,14 +497,14 @@ return await projects.methods.getRevision(id, version).call(function (err, res) 
 	var project = res.split('#');
 	console.log(res);
 	$('#project-title').text(project[1]);
-	$('#project-edit').html(project[2].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br>Value : '+project[3]);
-	$('#project-modal').modal('toggle');
+	$('#project-edit').html('<h3 style="font-size:25px">'+project[2]+'</h3>Value : '+project[3]);
+	$('#project-modal').modal('show');
 	globId = id;
 	$('#edit-articles').html('');
 	var i2 = 1;
 	for(var i=4; i < project.length; i+=2)
 	{
-		$('#edit-articles').append('<dt>Enhanchment '+i2+'</dt><li   >'+project[i].replace(/(?:\r\n|\r|\n)/g, '<br>')+'<br> Value : '+project[i+1]+'</li>');
+		$('#edit-articles').append('<dt>Enhanchment '+i2+'</dt><li>'+project[i]+'<br> Value : '+project[i+1]+'</li>');
 		i2++;
 	}
 	$('#edit-articles').append('<div id="vote-buttons"></div>');

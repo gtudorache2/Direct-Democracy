@@ -19,9 +19,6 @@
 		<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	</head>
         <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
-		<link rel="stylesheet" href="style.css" crossorigin="anonymous">
-
-
 </head>
         <body>
     <?php require('menu.php'); ?>
@@ -48,15 +45,15 @@
 			</div>
 		</div>
 </div>
-<div id="law-modal" class="modal  fade" tabindex="-1">
+<div id="project-modal" class="modal  fade" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="law-title">Modal title</h5>
-        <button type="button" class="btn-close" onclick="$('#law-modal').modal('hide')" aria-label="Close"></button>
+        <h5 class="modal-title" id="project-title">Modal title</h5>
+        <button type="button" class="btn-close" onclick="$('#project-modal').modal('hide')" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div id="law-edit" rows="20" style="Width:100%"></div>
+        <div id="project-edit" style="Width:100%"></div>
         <hr>
 
 		<dl id="edit-articles" style="margin-left:25px;border:1px solid lightgrey">
@@ -65,7 +62,7 @@
 			<hr>				
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#law-modal').modal('hide')">Close</button>
+        <button type="button" class="btn btn-secondary" onclick="$('#project-modal').modal('hide')">Close</button>
       </div>
     </div>
   </div>
