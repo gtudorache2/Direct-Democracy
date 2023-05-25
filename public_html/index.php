@@ -766,7 +766,7 @@
           '<div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">'+
             '<div class="icon-box">'+
               '<div class="icon" style="float:left"><i class="bx bxl-dribbble"></i></div>'+
-              '<h4><a href="">'+currentProject[1]+'</a></h4>'+
+              '<h4><a href="./projects.php?id='+i+'">'+currentProject[1]+'</a></h4>'+
               '<p>'+currentProject[2].substr(0, 256).replace(/(<([^>]+)>)/ig,"")+'...</p>'+
             '</div>'+
           '</div>');

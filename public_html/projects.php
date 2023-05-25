@@ -146,7 +146,7 @@ $( document ).ready(function() {
 
 <?php if (is_numeric($_GET['id']))
                 {
-                    echo "processRevisions(".$_GET['id'].", false, $('#revisions'));";
+                    echo "processProjectRevisions(".$_GET['id'].", false, $('#revisions'));";
                 }
             ?>
 
