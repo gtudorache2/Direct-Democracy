@@ -13,5 +13,5 @@ $ipfs = new IPFS("localhost", '8080', "5002");
 if (isset($_GET['hash']))
 {   
   //  echo file_get_contents($_FILES['files']["tmp_name"]);
-    echo $ipfs->cat(explode('|', $_GET['hash'])[0]);
+    echo base64_decode($ipfs->cat(explode('|', $_GET['hash'])[0]));
 }

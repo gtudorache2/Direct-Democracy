@@ -24,7 +24,7 @@
 				<div class="card-title h4">Get revisions</div>
 				<div class="card-text">
                     <div class="input-group mb-3">
-					    <input placeholder="project number" value="<?=$_GET['id']?>" class="form-control" id="id" /><button class="btn btn-warning" onclick="processRevisions($('#id').val());">Get revisions</button>
+					    <input placeholder="law number" value="<?=$_GET['id']?>" class="form-control" id="id" /><button class="btn btn-warning" onclick="processRevisions($('#id').val());">Get revisions</button>
                     </div>
                     <hr>
 					<table id="revisions" width="100%">
@@ -37,15 +37,15 @@
 				</div>
 			</div>
 		</div>
-<div id="project-modal" class="modal fade" tabindex="-1">
+<div id="law-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="project-title">Modal title</h5>
-        <button type="button" class="btn-close" onclick="$('#project-modal').modal('hide')" aria-label="Close"></button>
+        <h5 class="modal-title" id="law-title">Modal title</h5>
+        <button type="button" class="btn-close" onclick="$('#law-modal').modal('hide')" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div contenteditable id="project-edit" rows="20" style="Width:100%"></div>
+        <div contenteditable id="law-edit" rows="20" style="Width:100%"></div>
         <hr>
 		<div id="edit-articles" style="margin-left:25px;border:1px solid lightgrey">
 				<textarea class="form-control" rows="5"></textarea>
@@ -100,8 +100,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#project-modal').modal('hide')">Close</button>
-        <button type="button" class="btn btn-primary" onclick="proposeEdit(globId, $('#project-edit').text());$('#project-modal').modal('hide')">Save changes</button>
+        <button type="button" class="btn btn-secondary" onclick="$('#law-modal').modal('hide')">Close</button>
+        <button type="button" class="btn btn-primary" onclick="proposeEdit(globId, $('#law-edit').text());$('#law-modal').modal('hide')">Save changes</button>
       </div>
     </div>
   </div>

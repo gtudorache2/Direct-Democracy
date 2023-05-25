@@ -364,12 +364,12 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const DAI_ADDRESS = "0xc1340DD87555962F490A71E5931C6b45A7d62c6A"
+const DAI_ADDRESS = "0x9Fb51482C860D5A7B69919F0F3D9c58Aa5b39D72"
 
 
 const web3 = new Web3("ws://localhost:8545")
 
-const account =web3.eth.accounts.privateKeyToAccount("0x8284ee576fa47c45e396f285d77db57ed22a9c2307f8bd8e2f79eebd6fb088b5");
+const account =web3.eth.accounts.privateKeyToAccount("0x18c243eb91d2e59e31a5e7ca872430fd70bd8df96a22a365c516217df4a9b8ff");
 
 const daiToken = new web3.eth.Contract(ERC20TransferABI, DAI_ADDRESS)
 

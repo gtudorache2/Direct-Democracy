@@ -384,7 +384,7 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const PROJECTS_CONTRACT_ADDRESS = "0xaA090558E20520365140250c2065A35912f803b9";
+const PROJECTS_CONTRACT_ADDRESS = "0xa290b37155F70E37B77039BdeA7C266E4C7cd8D2";
 
 
 const projects = new web3.eth.Contract(projectsABI, PROJECTS_CONTRACT_ADDRESS)
@@ -424,7 +424,7 @@ return await projects.methods.getProject(id).call(function (err, res) {
 async function getLastProjects()
 {
 	var projects = Array();
-	var count = await getProjectsCount();
+	var count = await getProjectCount();
 
 	if (count > 10) count = 10
 
@@ -479,9 +479,9 @@ return await projects.methods.getRevision(id, version).call(function (err, res) 
 	for(var i=4; i < project.length; i+=2)
 	{
 		//aci
-		addTiny(project[i], i2, project[i+1]);
+		addTiny(project[i], tinyIdx, project[i+1]);
 //		$('#edit-articles').append('<input type="number" value="'+project[i+1]+'" id="v'+i+'"><button onclick="proposeArticleEdit('+id+', '+(i2-1)+', '+version+')">Update</button><hr>');
-		i2++;
+		tinyIdx++;
 	}
 
 	getAttachments(id, version);

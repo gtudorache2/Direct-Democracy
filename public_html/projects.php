@@ -3,7 +3,7 @@
 	<head>
   <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script>		var files = Array(); var rev; var tiny = Array();</script>
+		<script>		var files = Array(); var rev; var tiny = Array(); tinyIdx = 1;</script>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -56,7 +56,7 @@
 				<textarea class="form-control" rows="5"></textarea>
 			</div>
 			<hr>				
-			<button class="btn btn-warning" onclick="addTiny('','', 1);">Add enhanchment</button>
+			<button class="btn btn-warning" onclick="addTiny('',tinyIdx, 1);tinyIdx++">Add enhanchment</button>
 
             <hr>
 

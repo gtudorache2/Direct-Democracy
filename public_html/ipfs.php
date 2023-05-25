@@ -13,6 +13,6 @@ $ipfs = new IPFS("localhost", '8080', "5002");
 if (isset($_FILES['files']))
 {   
   //  echo file_get_contents($_FILES['files']["tmp_name"]);
-    $short = $ipfs->add(file_get_contents($_FILES['files']["tmp_name"]));
+    $short = $ipfs->add(base64_encode(file_get_contents($_FILES['files']["tmp_name"])));
     echo $short.'|'.$_FILES['files']['name'];
 }
