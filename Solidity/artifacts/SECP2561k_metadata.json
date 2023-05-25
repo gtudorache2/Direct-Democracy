@@ -1,0 +1,674 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z2",
+						"type": "uint256"
+					}
+				],
+				"name": "_ecAdd",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					}
+				],
+				"name": "_ecDouble",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "d",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					}
+				],
+				"name": "_ecMul",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "val",
+						"type": "uint256"
+					}
+				],
+				"name": "_inverse",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "invVal",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z2",
+						"type": "uint256"
+					}
+				],
+				"name": "_jAdd",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z2",
+						"type": "uint256"
+					}
+				],
+				"name": "_jDiv",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z2",
+						"type": "uint256"
+					}
+				],
+				"name": "_jMul",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z2",
+						"type": "uint256"
+					}
+				],
+				"name": "_jSub",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "z3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "a",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "b",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "privKey",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pubX",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pubY",
+						"type": "uint256"
+					}
+				],
+				"name": "deriveKey",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "qx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "qy",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y2",
+						"type": "uint256"
+					}
+				],
+				"name": "ecadd",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x3",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y3",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "scalar",
+						"type": "uint256"
+					}
+				],
+				"name": "ecmul",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y2",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "scalar",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "qx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "qy",
+						"type": "uint256"
+					}
+				],
+				"name": "ecmulVerify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gx",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gy",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "n",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[2]",
+						"name": "point",
+						"type": "uint256[2]"
+					}
+				],
+				"name": "point_hash",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "privKey",
+						"type": "uint256"
+					}
+				],
+				"name": "publicKey",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "qx",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "qy",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "privKey",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y",
+						"type": "uint256"
+					}
+				],
+				"name": "publicKeyVerify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "s",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[2]",
+						"name": "B",
+						"type": "uint256[2]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "c",
+						"type": "uint256"
+					}
+				],
+				"name": "sbmul_add_mul",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"sbmul_add_mul(uint256,uint256[2],uint256)": {
+					"notice": "hash(g^a + B^c)"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"cypher.sol": "SECP2561k"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"cypher.sol": {
+			"keccak256": "0xee423235a27e7157bfeae12ebd47a1c3b380da675e1265f29d16be6fbc942d75",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0aa634c3a9d19287df8ad3e9346a8283b11fa8197f1d14a6dfc7b8c16e6b2051",
+				"dweb:/ipfs/QmesmE3yEaqt3BFik5iYHmYqmP4HpyFGxZMvSmwzARZ1T2"
+			]
+		}
+	},
+	"version": 1
+}
