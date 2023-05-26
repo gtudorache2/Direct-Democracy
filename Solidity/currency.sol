@@ -1,9 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 import "taxes.sol";
+import "auth.sol";
+import "hardhat/console.sol";
 
 contract Currency {
     Taxes tax;
+    Auth auth;
+
     string public constant name = "kWCoin";
     string public constant symbol = "KWC";
     uint8 public constant decimals = 18;  
@@ -21,10 +25,12 @@ contract Currency {
     using SafeMath for uint256;
     
 
-   constructor() public {  
+   constructor(address taxContract, address authContract) {  
         state = msg.sender;
 	    totalSupply_ = address(state).balance;
 	    balances[state] = totalSupply_;
+        connectToAuth(authContract);
+        connectToTax(taxContract);
     }  
 
     function addToState(uint256 amount) private {
@@ -37,8 +43,14 @@ contract Currency {
 	    balances[state] += totalSupply_;
     }
 
-    function connectToTax(address taxContract) public payable {
+    function connectToTax(address taxContract) private {
+        require(msg.sender == state, "Not allowed");
         tax = Taxes(taxContract);
+    }
+
+    function connectToAuth(address authContract) private {
+        require(msg.sender == state, "Not allowed");
+        auth = Auth(authContract);
     }
 
     function totalSupply() public view returns (uint256) {
@@ -57,28 +69,34 @@ contract Currency {
         return true;
     }
 
-    function buy(address receiver, uint numTokens, string memory companyID, string memory product) public returns (bool) {
-        require(numTokens <= balances[msg.sender]);
+    function buy(bytes32 receiver, uint numTokens, string memory product) public returns (bool) {
+        require(numTokens <= balances[msg.sender], "Not enough funds");
 
-        int256 calcTax = int256(numTokens)*1000 * tax.getTax(companyID) / 100;
+        Auth.person memory Reciever;
+        string memory companyID;
+        console.log("Getting User");
+        Reciever = auth.getUser(receiver, "");
+        companyID = Reciever.companyCode;
+        console.log("Calculating tax");
+        int256 calcTax = int256(numTokens) * tax.getTax(companyID) / 100;
 
-        int256 calcVAT = int256(numTokens)*1000 * tax.getCurrentTaxes().VAT /100;
+        int256 calcVAT = int256(numTokens) * tax.getCurrentTaxes().VAT /100;
 
         balances[msg.sender] = balances[msg.sender].sub(numTokens);
-        balances[receiver] = balances[receiver].add(numTokens);     
+        balances[Reciever.blockAccount] = balances[Reciever.blockAccount].add(numTokens);     
         
         if (calcTax < 0)
         {
             calcTax = -calcTax;
             substractFromState(uint256(calcTax));
-            balances[receiver] = balances[receiver].add(uint256(calcTax));
+            balances[Reciever.blockAccount] = balances[Reciever.blockAccount].add(uint256(calcTax));
         }
         else
         {
             addToState(uint256(calcTax));
-            balances[receiver] = balances[receiver].sub(uint256(calcTax));
+            balances[Reciever.blockAccount] = balances[Reciever.blockAccount].sub(uint256(calcTax));
         }
-        emit Transfer(msg.sender, receiver, numTokens);
+        emit Transfer(msg.sender, Reciever.blockAccount, numTokens);
         return true;
     }
 

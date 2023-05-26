@@ -21,9 +21,13 @@ import "cypher.sol";
         string pass;
         string phone;
         uint8 accountType;
+        string companyCode;
         address blockAccount;
         bytes32 UID;
     }
+
+    event accountCreated(bytes32 UID);
+ 
 
     mapping(bytes32 => person) persons;
 
@@ -36,10 +40,10 @@ import "cypher.sol";
         require(owner == msg.sender, "Not allowed");
     }
 
-    function createAccount(string memory fullName, string memory SSN, string memory homeAddress, string memory pass, uint8 accountType, string memory phone, address addr) public payable
+    function createAccount(string memory fullName, string memory SSN, string memory homeAddress, string memory pass, uint8 accountType, string memory phone, address addr, string memory companyCode) public payable returns (bytes32)
     {
         isOwner();
- 
+        
         require(accountType <= 5, "Invalid company type");
         require(bytes(SSN).length == 13, "Invalid SSN");
         require(bytes(fullName).length > 6, "Invalid name");
@@ -58,7 +62,8 @@ import "cypher.sol";
                 phone : string(cypher.encrypt(bytes(phone), bytes(pass))),
                 accountType: accountType,
                 blockAccount : addr,
-                UID: UID
+                UID: UID,
+                companyCode: "0"
             });
         }
         else
@@ -71,9 +76,12 @@ import "cypher.sol";
                 phone : phone,
                 accountType: accountType,
                 blockAccount : addr,
-                UID: UID           
+                UID: UID,
+                companyCode:companyCode           
             });
         }
+        emit accountCreated(UID);
+        return UID;
     }
 
     function getUser(bytes32 UID, string memory pass) public view returns(person memory)
@@ -90,7 +98,8 @@ import "cypher.sol";
                 phone: "********",
                 accountType: persons[UID].accountType,
                 blockAccount:msg.sender,
-                UID : persons[UID].UID
+                UID : persons[UID].UID,
+                companyCode : persons[UID].companyCode
             });
         }
         else
@@ -103,7 +112,8 @@ import "cypher.sol";
                 phone : string(cypher.encrypt(bytes(persons[UID].phone), bytes(pass))),
                 accountType: persons[UID].accountType,
                 blockAccount : persons[UID].blockAccount,
-                UID: UID
+                UID: UID,
+                companyCode: persons[UID].companyCode
             });           
         }
 
@@ -118,13 +128,14 @@ import "cypher.sol";
                 phone: persons[UID].phone,
                 accountType: persons[UID].accountType,
                 blockAccount:persons[UID].blockAccount,
-                UID : persons[UID].UID
+                UID : persons[UID].UID,
+                companyCode: persons[UID].companyCode
             });
         }
         return censoredPerson;
     }
 
-    function editUser(bytes32 UID, string memory fullName, string memory homeAddress, string memory phone, address blockAccount, string memory pass) public payable
+    function editUser(bytes32 UID, string memory fullName, string memory homeAddress, string memory phone, address blockAccount, string memory companyCode, string memory pass) public payable
     {
          if ((persons[UID].blockAccount != msg.sender) && (compare(pass, string(abi.encodePacked(keccak256(abi.encodePacked(pass)))))))    
          {
@@ -132,10 +143,11 @@ import "cypher.sol";
              persons[UID].homeAddress = homeAddress;
              persons[UID].phone = phone;
              persons[UID].blockAccount = blockAccount;
+             persons[UID].companyCode = companyCode;
          }   
     }
 
-     function compare(string memory str1, string memory str2) public pure returns (bool) {
+     function compare(string memory str1, string memory str2) private pure returns (bool) {
         return keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));
     }
  }

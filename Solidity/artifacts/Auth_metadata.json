@@ -11,28 +11,17 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "str1",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "str2",
-						"type": "string"
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
 					}
 				],
-				"name": "compare",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
+				"name": "accountCreated",
+				"type": "event"
 			},
 			{
 				"inputs": [
@@ -70,10 +59,21 @@
 						"internalType": "address",
 						"name": "addr",
 						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "companyCode",
+						"type": "string"
 					}
 				],
 				"name": "createAccount",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
 				"stateMutability": "payable",
 				"type": "function"
 			},
@@ -103,6 +103,11 @@
 						"internalType": "address",
 						"name": "blockAccount",
 						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "companyCode",
+						"type": "string"
 					},
 					{
 						"internalType": "string",
@@ -161,6 +166,11 @@
 								"internalType": "uint8",
 								"name": "accountType",
 								"type": "uint8"
+							},
+							{
+								"internalType": "string",
+								"name": "companyCode",
+								"type": "string"
 							},
 							{
 								"internalType": "address",
@@ -234,11 +244,11 @@
 			]
 		},
 		"auth.sol": {
-			"keccak256": "0x13258ab964d36c0608a238782d2060577611f6dad9f87a7fd6937f464ae9b93f",
+			"keccak256": "0x3d42e3359cb3143f4335087560efe75da17af024f18347ac2ac49e6713901c72",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://be8adcab1648c9cc327990231f0a15583141b1c083431987cf11dcd54ef8b0d3",
-				"dweb:/ipfs/QmaJuDYsTjG1R4HAY39byxhZmwMwfjnrL6CtiACRLfVop1"
+				"bzz-raw://afd34cd9a89188d6ac417bcaaaf1b623aa43535ca3ace0bcaec390c4973cf4a4",
+				"dweb:/ipfs/QmTy1CioXsh3ihGyfKEbLV4P8vLPfeAVD7tebY9wnJEUVJ"
 			]
 		},
 		"cypher.sol": {

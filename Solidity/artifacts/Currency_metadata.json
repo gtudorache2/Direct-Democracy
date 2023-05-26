@@ -6,7 +6,18 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "taxContract",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "authContract",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -130,19 +141,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
+						"internalType": "bytes32",
 						"name": "receiver",
-						"type": "address"
+						"type": "bytes32"
 					},
 					{
 						"internalType": "uint256",
 						"name": "numTokens",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "companyID",
-						"type": "string"
 					},
 					{
 						"internalType": "string",
@@ -159,19 +165,6 @@
 					}
 				],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "taxContract",
-						"type": "address"
-					}
-				],
-				"name": "connectToTax",
-				"outputs": [],
-				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -339,12 +332,28 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
-		"currency.sol": {
-			"keccak256": "0xf00d90eba98f9428d3d8fa0510fa3356071d6c7536841dc76caa1f6b9a7c1cc4",
+		"auth.sol": {
+			"keccak256": "0x6d396f92cd4cfde4f4569ef4ad19657be328b46aaf8d39e2d6116f44e2c7fc48",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://93831f85aca290d975bf2fabc18b561e0d3c00c873adb4bafe3678128c0a97ac",
-				"dweb:/ipfs/QmS1yBbXT9QkaELf5ukU6GMWznzgBFwukoX3eH2qoCF9nv"
+				"bzz-raw://784c15c549d12aa02a2f0231da51cf53b1f64deb4cb44d772a8ef427392d7472",
+				"dweb:/ipfs/QmRDrRKmytrdh8TC2Jc7dso9nLw1A7GBHSv3WCVcFDR8HY"
+			]
+		},
+		"currency.sol": {
+			"keccak256": "0xf13b0202bc7f477a9fc667ab64fd2c67422ea9216f8a7ece4570c9612e628b59",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e6a6870032034a1756cb0384c56ab052be3372eb3a69248603ea9483e83e9452",
+				"dweb:/ipfs/QmehBk1EMy5tm3EXhijNyjxotsC8Kr5jkQYkD6LRKq2hKx"
+			]
+		},
+		"cypher.sol": {
+			"keccak256": "0x9149ed692a34322b0a7974c04f125a749d6fbbd5f42ee809aa204e5af54b2ddc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://32ddc7ccc439056c7dcf94c0f62e4a055255d6368ca2cd1390a94538a83a95a3",
+				"dweb:/ipfs/Qme8k1GUwXpMXDTySutcXfUA3YGMaWruFJ4BtFaNkxXqjX"
 			]
 		},
 		"hardhat/console.sol": {
