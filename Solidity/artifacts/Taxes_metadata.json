@@ -30,19 +30,6 @@
 				"type": "event"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "changeOwner",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "getCurrentTaxes",
 				"outputs": [
@@ -232,12 +219,6 @@
 			"details": "Set & change owner",
 			"kind": "dev",
 			"methods": {
-				"changeOwner(address)": {
-					"details": "Change owner",
-					"params": {
-						"newOwner": "address of new owner"
-					}
-				},
 				"constructor": {
 					"details": "Set contract deployer as owner"
 				},
@@ -314,11 +295,11 @@
 			]
 		},
 		"taxes.sol": {
-			"keccak256": "0xf5aac62d3f194087688b05e6584f2555875b81b94c6f9da0bb1ef6610ed6dc4a",
+			"keccak256": "0x8bbd2b828cd64ddfff6ed55e7c57f5d2be2586b3465567121018c69562d968be",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://aa03637e6edba0e43e420daf88397da80bf9a15aeffef83ff634197c8510f261",
-				"dweb:/ipfs/QmV1jBnHhQypGydjznSm8yWvxkLQjXQ3BqcmSYkcZbyEVn"
+				"bzz-raw://489697f9ed504f03f67012c5558233a0a07f069d1121817d83557957c2a6bab8",
+				"dweb:/ipfs/QmXKTC2c4f4ScGMvATafrdCLttyrAZmHA5i8bAnuuENWVi"
 			]
 		}
 	},

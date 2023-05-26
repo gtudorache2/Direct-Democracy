@@ -73,12 +73,12 @@
 
         taxes2 = cols;
         console.log(taxes2)
-         for(var i = 0; i < taxes2.length;i++)
+         for(var i =0; i < taxes2.length;i++)
          {
-            rev.row.add([i, '<span class="h5">'+taxes2[i][2]+'</span><span class="h4">/'+taxes2[i][3]+'</span>', taxes2[i][0], taxes2[i][1]+'%',
-            '<button class="btn btn-success b" onclick="voteTax(\''+i+'\', 1)">Yes</button>'+
-            '<button class="btn btn-warning b" onclick="voteTax(\''+i+'\', 0)">Abtain</button>'+
-            '<button class="btn btn-danger b" onclick="voteTax(\''+i+'\',-1)">No</button>'
+            rev.row.add([i, '<span class="h5">'+taxes2[i][3]+'</span><span class="h4">/'+taxes2[i][4]+'</span>', taxes2[i][1], taxes2[i][2]+'%',
+            '<button class="btn btn-success b" onclick="voteCustomTax(\''+ taxes2[i][0]+'\', 1)">Yes</button>'+
+            '<button class="btn btn-warning b" onclick="voteCustomTax(\''+ taxes2[i][0]+'\', 0)">Abstain</button>'+
+            '<button class="btn btn-danger b" onclick="voteCustomTax(\''+ taxes2[i][0]+'\',-1)">No</button>'
         ]).draw();
          }
        }

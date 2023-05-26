@@ -211,7 +211,7 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const ADDRESS = "0x917deCeaA6A5f0f00321C908aFC9Cec0Da6C4854"
+const ADDRESS = "0x60650ed47bA50A344a0807259A33c65bC9b77836"
 
 
 
@@ -260,7 +260,29 @@ try
 }
 catch (e)
 {
-	alert(e2)
+	alert(e)
+}}
+
+function voteCustomTax(id, vote)
+{
+var e2
+try
+{
+	taxes.methods
+	.voteCustom(id, vote)
+	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
+	    if (err) {
+	      alert(err)
+	      return
+	    }
+	    alert('Success !')
+	    displayTaxes()
+	    console.log("Hash of the transaction: " + res)
+	  })
+}
+catch (e)
+{
+	alert(e)
 }}
 
 async function getTaxesVotes()

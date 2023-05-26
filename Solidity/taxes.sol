@@ -77,7 +77,7 @@ contract Taxes {
      * @dev Change owner
      * @param newOwner address of new owner
      */
-    function changeOwner(address newOwner) public isOwner {
+    function changeOwner(address newOwner) private isOwner {
         emit OwnerSet(owner, newOwner);
         owner = newOwner;
     }
@@ -149,7 +149,9 @@ contract Taxes {
         for(uint256 i = 0; i < customTaxesProp.length; i++)
         {
             //(bool b, int256 percent) = SafeMath.tryDiv(customTaxesProp[i].votes * 1000, customTaxesProp[i].total);
-                taxes = string.concat(customTaxesProp[i].companyID,'#', 
+                taxes = string.concat(
+                Strings.toString(i),"#",
+                customTaxesProp[i].companyID,'#', 
                 Strings.toString(customTaxesProp[i].tax),'#',
                 Strings.toString(customTaxesProp[i].votes),'#',
                 Strings.toString(customTaxesProp[i].total),'|', taxes);
