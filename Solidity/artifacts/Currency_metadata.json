@@ -16,6 +16,11 @@
 						"internalType": "address",
 						"name": "authContract",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "accountingContract",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -151,9 +156,9 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
-						"name": "product",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
 					}
 				],
 				"name": "buy",
@@ -332,20 +337,28 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
-		"auth.sol": {
-			"keccak256": "0x6d396f92cd4cfde4f4569ef4ad19657be328b46aaf8d39e2d6116f44e2c7fc48",
+		"accounting.sol": {
+			"keccak256": "0xdbfe82a3a80c2932882f0994afc449e88742ff7deea4f9e102485ee058366eb2",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://784c15c549d12aa02a2f0231da51cf53b1f64deb4cb44d772a8ef427392d7472",
-				"dweb:/ipfs/QmRDrRKmytrdh8TC2Jc7dso9nLw1A7GBHSv3WCVcFDR8HY"
+				"bzz-raw://5f750e9deffd655381b34a5d5cded9da27489a655eac0dfe7c647c72146af960",
+				"dweb:/ipfs/QmQr8DokxULUEiMttNBgs6pmZzkPwTMAhcubaPumpwWjCD"
+			]
+		},
+		"auth.sol": {
+			"keccak256": "0x3f1a537efd7b8d1e7f5bb7ee261ad5cfb7d58a0153af1f908be1f534a0c65e8c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0ad98425c3f59b64242dd0ba27c7ea0899cd686550862808ac76333a419eafa1",
+				"dweb:/ipfs/QmfXvkLxK6L97yoMrjHwwtXxJo6vTNLXmMduju4Ku2g1eF"
 			]
 		},
 		"currency.sol": {
-			"keccak256": "0xf13b0202bc7f477a9fc667ab64fd2c67422ea9216f8a7ece4570c9612e628b59",
+			"keccak256": "0xa7f6f611cee830195d4855979097e247698a5279e23da7c2cb73402771b280e1",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://e6a6870032034a1756cb0384c56ab052be3372eb3a69248603ea9483e83e9452",
-				"dweb:/ipfs/QmehBk1EMy5tm3EXhijNyjxotsC8Kr5jkQYkD6LRKq2hKx"
+				"bzz-raw://adeaa337b38df2eec7dddb720faadf3f9a7d63a213990f35555a5b0f915fed94",
+				"dweb:/ipfs/QmX3nUpkDouGQyZ2smKykYiRGtPLTHNR1ZCBTUee2dGuGQ"
 			]
 		},
 		"cypher.sol": {
@@ -365,11 +378,11 @@
 			]
 		},
 		"taxes.sol": {
-			"keccak256": "0xf5aac62d3f194087688b05e6584f2555875b81b94c6f9da0bb1ef6610ed6dc4a",
+			"keccak256": "0xa26a4c6419888764d52b9b35e94e80887ecd68ad531bb54e4738af7a343f53bd",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://aa03637e6edba0e43e420daf88397da80bf9a15aeffef83ff634197c8510f261",
-				"dweb:/ipfs/QmV1jBnHhQypGydjznSm8yWvxkLQjXQ3BqcmSYkcZbyEVn"
+				"bzz-raw://1e0a1254d99d5b272d680c73a2315ca71f1aab0f7505bda5078b36633ce9e0ab",
+				"dweb:/ipfs/QmeaPbQ9BdHdq6ZUbwN8p9HUp6WRgQRmMaZJGKJCzknaa1"
 			]
 		}
 	},

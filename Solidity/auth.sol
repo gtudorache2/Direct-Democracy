@@ -43,7 +43,7 @@ import "cypher.sol";
     function createAccount(string memory fullName, string memory SSN, string memory homeAddress, string memory pass, uint8 accountType, string memory phone, address addr, string memory companyCode) public payable returns (bytes32)
     {
         isOwner();
-        
+
         require(accountType <= 5, "Invalid company type");
         require(bytes(SSN).length == 13, "Invalid SSN");
         require(bytes(fullName).length > 6, "Invalid name");
@@ -87,7 +87,8 @@ import "cypher.sol";
     function getUser(bytes32 UID, string memory pass) public view returns(person memory)
     {
         person memory censoredPerson;
-        
+
+
         if (persons[UID].blockAccount != msg.sender)
         {
             censoredPerson = person({
@@ -117,7 +118,6 @@ import "cypher.sol";
             });           
         }
 
-
         if (persons[UID].accountType > 0)
         {
             censoredPerson = person({
@@ -132,12 +132,17 @@ import "cypher.sol";
                 companyCode: persons[UID].companyCode
             });
         }
+
+        if (authenthicate(UID, pass))
+        {
+            censoredPerson.pass = persons[UID].pass;
+        }
         return censoredPerson;
     }
 
     function editUser(bytes32 UID, string memory fullName, string memory homeAddress, string memory phone, address blockAccount, string memory companyCode, string memory pass) public payable
     {
-         if ((persons[UID].blockAccount != msg.sender) && (compare(pass, string(abi.encodePacked(keccak256(abi.encodePacked(pass)))))))    
+         if ((persons[UID].blockAccount != msg.sender) && (authenthicate(UID, pass)))    
          {
              persons[UID].fullName = fullName;
              persons[UID].homeAddress = homeAddress;
@@ -149,5 +154,9 @@ import "cypher.sol";
 
      function compare(string memory str1, string memory str2) private pure returns (bool) {
         return keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));
+    }
+
+    function authenthicate(bytes32 UID, string memory pass) public view returns(bool) {
+        return compare(string(abi.encodePacked(keccak256(abi.encodePacked(pass)))), persons[UID].pass);
     }
  }

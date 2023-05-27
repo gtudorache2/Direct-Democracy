@@ -26,6 +26,30 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					}
+				],
+				"name": "authenthicate",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string",
 						"name": "fullName",
 						"type": "string"
@@ -244,11 +268,11 @@
 			]
 		},
 		"auth.sol": {
-			"keccak256": "0x3d42e3359cb3143f4335087560efe75da17af024f18347ac2ac49e6713901c72",
+			"keccak256": "0x3f1a537efd7b8d1e7f5bb7ee261ad5cfb7d58a0153af1f908be1f534a0c65e8c",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://afd34cd9a89188d6ac417bcaaaf1b623aa43535ca3ace0bcaec390c4973cf4a4",
-				"dweb:/ipfs/QmTy1CioXsh3ihGyfKEbLV4P8vLPfeAVD7tebY9wnJEUVJ"
+				"bzz-raw://0ad98425c3f59b64242dd0ba27c7ea0899cd686550862808ac76333a419eafa1",
+				"dweb:/ipfs/QmfXvkLxK6L97yoMrjHwwtXxJo6vTNLXmMduju4Ku2g1eF"
 			]
 		},
 		"cypher.sol": {

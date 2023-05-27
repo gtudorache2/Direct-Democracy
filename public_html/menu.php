@@ -50,6 +50,13 @@
             <li class="dropdown-item"><a href="vote_project.php">Vote project</a></li>
             </ul>
         </li>
+        <li class="dropdown">
+        <a href="#" role="button" aria-haspopup="true" aria-expanded="false">Products<i class="bi bi-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+          <li class="dropdown-item"><a href="product_types.php">Products list</a></li>
+          <li class="dropdown-item"><a href="product_taxes.php">Products propositions</a></li>
+            </ul>
+        </li>
       </ul>
 </nav>
 </div>

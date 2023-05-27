@@ -1,0 +1,354 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "authAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "value",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "price",
+						"type": "int256"
+					}
+				],
+				"name": "addToStock",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "barcode",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "category",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "allowed",
+						"type": "bool"
+					}
+				],
+				"name": "createProduct",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "from",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "to",
+						"type": "uint256"
+					}
+				],
+				"name": "getInOuts",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "acc",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getProduct",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "quantity",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "category",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "barcode",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "allowed",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Accounting.cProduct",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "barcode",
+						"type": "uint256"
+					}
+				],
+				"name": "getStockByBarcode",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "stock",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getStockById",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "stock",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "value",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "price",
+						"type": "int256"
+					}
+				],
+				"name": "removeFromStock",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"accounting.sol": "Accounting"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"OpenZeppelin.mod/Strings.sol": {
+			"keccak256": "0x2626d8ab3dfdad0fad630c212ad146d59473d0f48b771784c61a7c1dbbea1f3f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d7c144532f1e7c76ac95fb6a8f617c1f740d7a73442a907eb60910e99dfa1fbf",
+				"dweb:/ipfs/QmZsGyooD6emxB8JCuugRjnRYS2MPZEL586uuV7dgC8Jng"
+			]
+		},
+		"OpenZeppelin.mod/math/Math.sol": {
+			"keccak256": "0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://33bbf48cc069be677705037ba7520c22b1b622c23b33e1a71495f2d36549d40b",
+				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
+			]
+		},
+		"OpenZeppelin.mod/math/SignedMath.sol": {
+			"keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
+				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
+			]
+		},
+		"accounting.sol": {
+			"keccak256": "0xdbfe82a3a80c2932882f0994afc449e88742ff7deea4f9e102485ee058366eb2",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5f750e9deffd655381b34a5d5cded9da27489a655eac0dfe7c647c72146af960",
+				"dweb:/ipfs/QmQr8DokxULUEiMttNBgs6pmZzkPwTMAhcubaPumpwWjCD"
+			]
+		},
+		"auth.sol": {
+			"keccak256": "0x3f1a537efd7b8d1e7f5bb7ee261ad5cfb7d58a0153af1f908be1f534a0c65e8c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://0ad98425c3f59b64242dd0ba27c7ea0899cd686550862808ac76333a419eafa1",
+				"dweb:/ipfs/QmfXvkLxK6L97yoMrjHwwtXxJo6vTNLXmMduju4Ku2g1eF"
+			]
+		},
+		"cypher.sol": {
+			"keccak256": "0x9149ed692a34322b0a7974c04f125a749d6fbbd5f42ee809aa204e5af54b2ddc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://32ddc7ccc439056c7dcf94c0f62e4a055255d6368ca2cd1390a94538a83a95a3",
+				"dweb:/ipfs/Qme8k1GUwXpMXDTySutcXfUA3YGMaWruFJ4BtFaNkxXqjX"
+			]
+		}
+	},
+	"version": 1
+}

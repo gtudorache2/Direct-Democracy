@@ -1,6 +1,11 @@
 
 const taxesABI = [
 	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -18,106 +23,6 @@ const taxesABI = [
 		],
 		"name": "OwnerSet",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "changeOwner",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "companyID",
-				"type": "string"
-			},
-			{
-				"internalType": "int8",
-				"name": "tax",
-				"type": "int8"
-			}
-		],
-		"name": "proposeCustomTaxes",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "int8",
-				"name": "PIT",
-				"type": "int8"
-			},
-			{
-				"internalType": "int8",
-				"name": "CIT",
-				"type": "int8"
-			},
-			{
-				"internalType": "int8",
-				"name": "VAT",
-				"type": "int8"
-			},
-			{
-				"internalType": "int8",
-				"name": "Health",
-				"type": "int8"
-			}
-		],
-		"name": "proposeStandardTaxes",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "int256",
-				"name": "v",
-				"type": "int256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "int256",
-				"name": "v",
-				"type": "int256"
-			}
-		],
-		"name": "voteCustom",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	},
 	{
 		"inputs": [],
@@ -192,6 +97,38 @@ const taxesABI = [
 	},
 	{
 		"inputs": [],
+		"name": "getProductTaxes",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "taxes",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "companyID",
+				"type": "string"
+			}
+		],
+		"name": "getTax",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getVotes",
 		"outputs": [
 			{
@@ -202,8 +139,127 @@ const taxesABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "companyID",
+				"type": "string"
+			},
+			{
+				"internalType": "int8",
+				"name": "tax",
+				"type": "int8"
+			}
+		],
+		"name": "proposeCustomTaxes",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "productID",
+				"type": "string"
+			},
+			{
+				"internalType": "int8",
+				"name": "tax",
+				"type": "int8"
+			}
+		],
+		"name": "proposeProductTaxes",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int8",
+				"name": "PIT",
+				"type": "int8"
+			},
+			{
+				"internalType": "int8",
+				"name": "CIT",
+				"type": "int8"
+			},
+			{
+				"internalType": "int8",
+				"name": "VAT",
+				"type": "int8"
+			},
+			{
+				"internalType": "int8",
+				"name": "Health",
+				"type": "int8"
+			}
+		],
+		"name": "proposeStandardTaxes",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "int256",
+				"name": "v",
+				"type": "int256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "int256",
+				"name": "v",
+				"type": "int256"
+			}
+		],
+		"name": "voteCustom",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "int256",
+				"name": "v",
+				"type": "int256"
+			}
+		],
+		"name": "voteProduct",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
 	}
 ]
+
 function calcHeight(value) {
   let numberOfLineBreaks = (value.match(/\n/g) || []).length;
   // min-height + lines x line-height + padding + border
@@ -211,7 +267,7 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const ADDRESS = "0x60650ed47bA50A344a0807259A33c65bC9b77836"
+const ADDRESS = "0x6f412306eD126cF7680CE5540e0B927479b54A1c"
 
 
 
@@ -233,6 +289,17 @@ return await taxes.methods.getCurrentTaxes().call(function (err, res) {
 async function getCustomTaxes()
 {
 return await taxes.methods.getCustomTaxes().call(function (err, res) {
+	  if (err) {
+	    console.log("An error occurred", err)
+	    return
+	  }
+	  console.log(res)
+	return res
+})}
+
+async function getProductTaxes()
+{
+return await taxes.methods.getProductTaxes().call(function (err, res) {
 	  if (err) {
 	    console.log("An error occurred", err)
 	    return
@@ -270,6 +337,28 @@ try
 {
 	taxes.methods
 	.voteCustom(id, vote)
+	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
+	    if (err) {
+	      alert(err)
+	      return
+	    }
+	    alert('Success !')
+	    displayTaxes()
+	    console.log("Hash of the transaction: " + res)
+	  })
+}
+catch (e)
+{
+	alert(e)
+}}
+
+function voteProductTax(id, vote)
+{
+var e2
+try
+{
+	taxes.methods
+	.voteProduct(id, vote)
 	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
 	    if (err) {
 	      alert(err)
@@ -324,6 +413,28 @@ function proposeCustomTax(id, tax)
 	{
 		taxes.methods
 		.proposeCustomTaxes(id, tax)
+		.send({ from: account.address, gas:"3500000" }, function (err, res) {
+			if (err) {
+			alert(err)
+			return
+			}
+			alert('Success !')
+			console.log("Hash of the transaction: " + res)
+		})
+	}
+	catch (e)
+	{
+		alert(e)
+	}
+}
+
+function proposeProductTax(id, tax)
+{
+	var e2
+	try
+	{
+		taxes.methods
+		.proposeProductTaxes(id, tax)
 		.send({ from: account.address, gas:"3500000" }, function (err, res) {
 			if (err) {
 			alert(err)

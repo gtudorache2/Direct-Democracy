@@ -2,15 +2,22 @@
 pragma solidity ^0.8.0;
 import "taxes.sol";
 import "auth.sol";
+import "accounting.sol";
 import "hardhat/console.sol";
 
 contract Currency {
     Taxes tax;
     Auth auth;
-
+    Accounting accounting;
+  
+    struct cSale {
+        Accounting.cProduct product;
+        uint256 timestamp;
+    }
+    
     string public constant name = "kWCoin";
     string public constant symbol = "KWC";
-    uint8 public constant decimals = 18;  
+    uint8 public constant decimals = 18; 
 
     address state; 
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
@@ -23,14 +30,16 @@ contract Currency {
     uint256 totalSupply_;
 
     using SafeMath for uint256;
-    
 
-   constructor(address taxContract, address authContract) {  
+    mapping(address => cSale[]) extract;
+
+   constructor(address taxContract, address authContract, address accountingContract) {  
         state = msg.sender;
 	    totalSupply_ = address(state).balance;
 	    balances[state] = totalSupply_;
         connectToAuth(authContract);
         connectToTax(taxContract);
+        accounting = Accounting(accountingContract);
     }  
 
     function addToState(uint256 amount) private {
@@ -69,17 +78,21 @@ contract Currency {
         return true;
     }
 
-    function buy(bytes32 receiver, uint numTokens, string memory product) public returns (bool) {
+    function buy(bytes32 receiver, uint numTokens, uint256 productId) public returns (bool) {
         require(numTokens <= balances[msg.sender], "Not enough funds");
 
         Auth.person memory Reciever;
         string memory companyID;
+        Accounting.cProduct memory product;
+
+        product = accounting.getProduct(productId);
+
         console.log("Getting User");
         Reciever = auth.getUser(receiver, "");
         companyID = Reciever.companyCode;
         console.log("Calculating tax");
         int256 calcTax = int256(numTokens) * tax.getTax(companyID) / 100;
-
+        int256 productTax = int256(numTokens) * tax.getProductTax(product.category) / 100;
         int256 calcVAT = int256(numTokens) * tax.getCurrentTaxes().VAT /100;
 
         balances[msg.sender] = balances[msg.sender].sub(numTokens);
@@ -96,6 +109,26 @@ contract Currency {
             addToState(uint256(calcTax));
             balances[Reciever.blockAccount] = balances[Reciever.blockAccount].sub(uint256(calcTax));
         }
+
+        if (productTax < 0)
+        {
+            productTax = -productTax;
+            substractFromState(uint256(productTax));
+            balances[Reciever.blockAccount] = balances[Reciever.blockAccount].add(uint256(productTax));
+        }
+        else
+        {
+            addToState(uint256(productTax));
+            balances[Reciever.blockAccount] = balances[Reciever.blockAccount].sub(uint256(productTax));
+        }
+
+        addToState(uint256(calcVAT));
+        balances[Reciever.blockAccount] = balances[Reciever.blockAccount].sub(uint256(calcVAT));
+        
+        extract[msg.sender].push(cSale({
+            product:product,
+            timestamp:block.timestamp
+        }));
         emit Transfer(msg.sender, Reciever.blockAccount, numTokens);
         return true;
     }

@@ -104,6 +104,38 @@
 				"inputs": [
 					{
 						"internalType": "string",
+						"name": "productID",
+						"type": "string"
+					}
+				],
+				"name": "getProductTax",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getProductTaxes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "taxes",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
 						"name": "companyID",
 						"type": "string"
 					}
@@ -146,6 +178,24 @@
 					}
 				],
 				"name": "proposeCustomTaxes",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "productID",
+						"type": "string"
+					},
+					{
+						"internalType": "int8",
+						"name": "tax",
+						"type": "int8"
+					}
+				],
+				"name": "proposeProductTaxes",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -210,6 +260,24 @@
 					}
 				],
 				"name": "voteCustom",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "v",
+						"type": "int256"
+					}
+				],
+				"name": "voteProduct",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -295,11 +363,11 @@
 			]
 		},
 		"taxes.sol": {
-			"keccak256": "0x8bbd2b828cd64ddfff6ed55e7c57f5d2be2586b3465567121018c69562d968be",
+			"keccak256": "0xa26a4c6419888764d52b9b35e94e80887ecd68ad531bb54e4738af7a343f53bd",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://489697f9ed504f03f67012c5558233a0a07f069d1121817d83557957c2a6bab8",
-				"dweb:/ipfs/QmXKTC2c4f4ScGMvATafrdCLttyrAZmHA5i8bAnuuENWVi"
+				"bzz-raw://1e0a1254d99d5b272d680c73a2315ca71f1aab0f7505bda5078b36633ce9e0ab",
+				"dweb:/ipfs/QmeaPbQ9BdHdq6ZUbwN8p9HUp6WRgQRmMaZJGKJCzknaa1"
 			]
 		}
 	},
