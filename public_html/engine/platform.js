@@ -1,4 +1,5 @@
 var globId;
+var account;
 const ERC20TransferABI = [
 	{
 		"anonymous": false,
@@ -369,7 +370,8 @@ const DAI_ADDRESS = "0x9Fb51482C860D5A7B69919F0F3D9c58Aa5b39D72"
 
 const web3 = new Web3("ws://localhost:8545")
 
-const account =web3.eth.accounts.privateKeyToAccount("0x18c243eb91d2e59e31a5e7ca872430fd70bd8df96a22a365c516217df4a9b8ff");
+account =web3.eth.accounts.privateKeyToAccount("0x9fd98f10cffe434dab9471c7299d539df37cac11f1dfb0aeefc238e18f4a3f01");
+$('#addr').val(account);
 
 const daiToken = new web3.eth.Contract(ERC20TransferABI, DAI_ADDRESS)
 
@@ -612,7 +614,7 @@ function proposeArticleEdit(id, articleId, version)
 	  })
 }
 
-	    daiToken.events.LawCreated({}, function(err, data) {
+daiToken.events.LawCreated({}, function(err, data) {
   if (err)
     console.log("Error: " + err);
    else

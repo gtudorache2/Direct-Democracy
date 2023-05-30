@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "authAddress",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -45,19 +51,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "changeOwner",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "title",
 						"type": "string"
@@ -76,6 +69,11 @@
 						"internalType": "int256",
 						"name": "value",
 						"type": "int256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "createProject",
@@ -317,6 +315,11 @@
 						"internalType": "string[]",
 						"name": "attachments",
 						"type": "string[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeEdit",
@@ -350,6 +353,11 @@
 						"internalType": "uint256",
 						"name": "value",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeEnhanchmentEdit",
@@ -373,6 +381,11 @@
 						"internalType": "int256",
 						"name": "v",
 						"type": "int256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "vote",
@@ -385,12 +398,6 @@
 			"details": "Set & change owner",
 			"kind": "dev",
 			"methods": {
-				"changeOwner(address)": {
-					"details": "Change owner",
-					"params": {
-						"newOwner": "address of new owner"
-					}
-				},
 				"constructor": {
 					"details": "Set contract deployer as owner"
 				},
@@ -458,6 +465,22 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
+		"auth.sol": {
+			"keccak256": "0x38e3ec7f80f3d053115c106d03e13e7591d1f64d1d90f273bbfb805c1121a232",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://632d17b62408cab9a4b98b747007084f7d8e7d14a20b51be7d90cd5e6873529b",
+				"dweb:/ipfs/QmUsPdxgFBUCqB4UVmgC5X8ifjzygLKevKPmaVrnp2B6hA"
+			]
+		},
+		"cypher.sol": {
+			"keccak256": "0x9149ed692a34322b0a7974c04f125a749d6fbbd5f42ee809aa204e5af54b2ddc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://32ddc7ccc439056c7dcf94c0f62e4a055255d6368ca2cd1390a94538a83a95a3",
+				"dweb:/ipfs/Qme8k1GUwXpMXDTySutcXfUA3YGMaWruFJ4BtFaNkxXqjX"
+			]
+		},
 		"hardhat/console.sol": {
 			"keccak256": "0x60b0215121bf25612a6739fb2f1ec35f31ee82e4a8216c032c8243d904ab3aa9",
 			"license": "MIT",
@@ -467,11 +490,11 @@
 			]
 		},
 		"projects.sol": {
-			"keccak256": "0xbe5eb8a15ea7c8bf8e68d4be79f3d98d9075c3356a9a43310bf511146c3db3b4",
+			"keccak256": "0x81cbc8bea203657767caad8a50e6c1db0376e1a25db530245354e51faa6081f4",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://40292667d5dad84be08f9fa6bc552f58b0d04f79e9cdab8ffb60f70f861d7381",
-				"dweb:/ipfs/QmXE4A7WHr2ihmaj78DoWhErveuyRMa8d8FroiNSJRaeBu"
+				"bzz-raw://b85e5680c639f30b724794815fa8a02e211bd6686c801ffe6a09027d23ff1a2b",
+				"dweb:/ipfs/QmQunKSKduNutHSG4zKQCQQjEue29JALu5fJvmWZ7r9Z2C"
 			]
 		}
 	},

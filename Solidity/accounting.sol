@@ -26,7 +26,8 @@ import "auth.sol";
     }
 
     cProduct[] productsList;
-    mapping(bytes32 => cInOut[]) accounts;
+    mapping(address => cInOut[]) accounts;
+    address UID = msg.sender;
 
     constructor(address authAddress) {
         auth = Auth(authAddress);
@@ -44,8 +45,8 @@ import "auth.sol";
         });
     }
     
-    function addToStock(bytes32 UID, string memory pass, uint256 productId, uint256 quantity, int256 value, int256 price) public payable {
-        require(auth.authenthicate(UID, pass), "Please log in");
+    function addToStock(bytes32 session, uint256 productId, uint256 quantity, int256 value, int256 price) public payable {
+        auth.checkLogin(session);
         
         accounts[UID].push();
         accounts[UID][accounts[UID].length-1] = cInOut({
@@ -57,8 +58,9 @@ import "auth.sol";
         });
     }
 
-    function removeFromStock(bytes32 UID, string memory pass, uint256 productId, uint256 quantity, int256 value, int256 price) public payable {
-        require(auth.authenthicate(UID, pass), "Please log in");
+    function removeFromStock(bytes32 session, uint256 productId, uint256 quantity, int256 value, int256 price) public payable {
+        auth.checkLogin(session);
+
         accounts[UID].push();
         accounts[UID][accounts[UID].length-1] = cInOut({
             product:productsList[productId],
@@ -69,9 +71,9 @@ import "auth.sol";
         });
     }
 
-    function getStockByBarcode(bytes32 UID, string memory pass, uint256 barcode) public view returns(int256 stock)
+    function getStockByBarcode( bytes32 session, uint256 barcode) public view returns(int256 stock)
     {
-        require(auth.authenthicate(UID, pass), "Please log in");
+        auth.checkLogin(session);
 
         stock = 0;
 
@@ -83,9 +85,9 @@ import "auth.sol";
         }        
     }
 
-    function getStockById(bytes32 UID, string memory pass, uint256 id) public view returns(int256 stock)
+    function getStockById(bytes32 session, uint256 id) public view returns(int256 stock)
     {
-        require(auth.authenthicate(UID, pass), "Please log in");
+        auth.checkLogin(session);
 
         stock = 0;
 
@@ -97,9 +99,9 @@ import "auth.sol";
         }        
     }
 
-    function getInOuts(bytes32 UID, string memory pass, uint256 from, uint256 to) public view returns(string memory acc)
+    function getInOuts(bytes32 session, uint256 from, uint256 to) public view returns(string memory acc)
     {
-         require(auth.authenthicate(UID, pass), "Please log in");
+        auth.checkLogin(session);
 
         for(uint256 i; i < accounts[UID].length; i++)
         {

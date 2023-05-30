@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "authAddress",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -45,19 +51,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "changeOwner",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "title",
 						"type": "string"
@@ -76,6 +69,11 @@
 						"internalType": "string[]",
 						"name": "documents",
 						"type": "string[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "createLaw",
@@ -244,6 +242,25 @@
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
+					}
+				],
+				"name": "getPassedVersion",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "law",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
@@ -302,6 +319,11 @@
 						"internalType": "string",
 						"name": "article",
 						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeArticleEdit",
@@ -330,6 +352,11 @@
 						"internalType": "string[]",
 						"name": "documents",
 						"type": "string[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeEdit",
@@ -353,6 +380,11 @@
 						"internalType": "int256",
 						"name": "v",
 						"type": "int256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "vote",
@@ -365,12 +397,6 @@
 			"details": "Set & change owner",
 			"kind": "dev",
 			"methods": {
-				"changeOwner(address)": {
-					"details": "Change owner",
-					"params": {
-						"newOwner": "address of new owner"
-					}
-				},
 				"constructor": {
 					"details": "Set contract deployer as owner"
 				},
@@ -438,6 +464,22 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
+		"auth.sol": {
+			"keccak256": "0x38e3ec7f80f3d053115c106d03e13e7591d1f64d1d90f273bbfb805c1121a232",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://632d17b62408cab9a4b98b747007084f7d8e7d14a20b51be7d90cd5e6873529b",
+				"dweb:/ipfs/QmUsPdxgFBUCqB4UVmgC5X8ifjzygLKevKPmaVrnp2B6hA"
+			]
+		},
+		"cypher.sol": {
+			"keccak256": "0x9149ed692a34322b0a7974c04f125a749d6fbbd5f42ee809aa204e5af54b2ddc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://32ddc7ccc439056c7dcf94c0f62e4a055255d6368ca2cd1390a94538a83a95a3",
+				"dweb:/ipfs/Qme8k1GUwXpMXDTySutcXfUA3YGMaWruFJ4BtFaNkxXqjX"
+			]
+		},
 		"hardhat/console.sol": {
 			"keccak256": "0x60b0215121bf25612a6739fb2f1ec35f31ee82e4a8216c032c8243d904ab3aa9",
 			"license": "MIT",
@@ -447,11 +489,11 @@
 			]
 		},
 		"laws.sol": {
-			"keccak256": "0x54edea1ca5881da40f4d3beb89afe0f1cbe61e7325b5cfeaecd9735cd469c52f",
+			"keccak256": "0xf0e5ca91526a1e1f05355539cf044080700d26efb367b387da43a4393b0ca66e",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://1a147f7a696ad6e8ba3ea5b0829a8e94f04f6f163693eb27ebd78135166c008f",
-				"dweb:/ipfs/QmWqRT3wX3UDKSzDX1MTNDb28ZrZajKM8M1QE7WGeCFBkP"
+				"bzz-raw://316041b273a283052c950dbba2e6d338b73093223b304926f31377dcfe68326c",
+				"dweb:/ipfs/QmTUXe3CRbGGmy3G2fE4cM9trTGcLqXbX9U28VXuJNxH1K"
 			]
 		}
 	},

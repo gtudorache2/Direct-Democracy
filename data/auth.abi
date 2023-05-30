@@ -1,0 +1,264 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "UID",
+				"type": "address"
+			}
+		],
+		"name": "accountCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "bytes32",
+				"name": "session",
+				"type": "bytes32"
+			}
+		],
+		"name": "loggedIn",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "UID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "pass",
+				"type": "string"
+			}
+		],
+		"name": "authenthicate",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "fullName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "SSN",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "homeAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "pass",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "accountType",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "phone",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "companyCode",
+				"type": "string"
+			}
+		],
+		"name": "createAccount",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "UID",
+				"type": "address"
+			}
+		],
+		"name": "deleteUser",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "fullName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "homeAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "phone",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "blockAccount",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "companyCode",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "session",
+				"type": "bytes32"
+			}
+		],
+		"name": "editUser",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "session",
+				"type": "bytes32"
+			}
+		],
+		"name": "checkLogin",
+		"outputs": [],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPopulation",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "UID",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "pass",
+				"type": "string"
+			}
+		],
+		"name": "getUser",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "fullName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "SSN",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "homeAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "pass",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "phone",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "accountType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "companyCode",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "blockAccount",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "UID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct Auth.person",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

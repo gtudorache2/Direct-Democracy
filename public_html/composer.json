@@ -1,0 +1,6 @@
+{
+
+    "require-dev": {
+        "web3p/web3.php": "dev-php-80"
+    }
+}

@@ -6,28 +6,15 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
 						"internalType": "address",
-						"name": "oldOwner",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newOwner",
+						"name": "authAddress",
 						"type": "address"
 					}
 				],
-				"name": "OwnerSet",
-				"type": "event"
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			},
 			{
 				"inputs": [],
@@ -175,6 +162,11 @@
 						"internalType": "int8",
 						"name": "tax",
 						"type": "int8"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeCustomTaxes",
@@ -193,6 +185,11 @@
 						"internalType": "int8",
 						"name": "tax",
 						"type": "int8"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeProductTaxes",
@@ -221,6 +218,11 @@
 						"internalType": "int8",
 						"name": "Health",
 						"type": "int8"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "proposeStandardTaxes",
@@ -239,6 +241,11 @@
 						"internalType": "int256",
 						"name": "v",
 						"type": "int256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "vote",
@@ -257,6 +264,11 @@
 						"internalType": "int256",
 						"name": "v",
 						"type": "int256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "voteCustom",
@@ -275,6 +287,11 @@
 						"internalType": "int256",
 						"name": "v",
 						"type": "int256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "voteProduct",
@@ -284,12 +301,8 @@
 			}
 		],
 		"devdoc": {
-			"details": "Set & change owner",
 			"kind": "dev",
 			"methods": {
-				"constructor": {
-					"details": "Set contract deployer as owner"
-				},
 				"getOwner()": {
 					"details": "Return owner address ",
 					"returns": {
@@ -297,7 +310,6 @@
 					}
 				}
 			},
-			"title": "Owner",
 			"version": 1
 		},
 		"userdoc": {
@@ -354,6 +366,22 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
+		"auth.sol": {
+			"keccak256": "0x38e3ec7f80f3d053115c106d03e13e7591d1f64d1d90f273bbfb805c1121a232",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://632d17b62408cab9a4b98b747007084f7d8e7d14a20b51be7d90cd5e6873529b",
+				"dweb:/ipfs/QmUsPdxgFBUCqB4UVmgC5X8ifjzygLKevKPmaVrnp2B6hA"
+			]
+		},
+		"cypher.sol": {
+			"keccak256": "0x9149ed692a34322b0a7974c04f125a749d6fbbd5f42ee809aa204e5af54b2ddc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://32ddc7ccc439056c7dcf94c0f62e4a055255d6368ca2cd1390a94538a83a95a3",
+				"dweb:/ipfs/Qme8k1GUwXpMXDTySutcXfUA3YGMaWruFJ4BtFaNkxXqjX"
+			]
+		},
 		"hardhat/console.sol": {
 			"keccak256": "0x60b0215121bf25612a6739fb2f1ec35f31ee82e4a8216c032c8243d904ab3aa9",
 			"license": "MIT",
@@ -363,11 +391,11 @@
 			]
 		},
 		"taxes.sol": {
-			"keccak256": "0xa26a4c6419888764d52b9b35e94e80887ecd68ad531bb54e4738af7a343f53bd",
+			"keccak256": "0x0dc4e387953508e41fdbe9934c35d590d51f2b5d23761f93d0225d335aaf48a4",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://1e0a1254d99d5b272d680c73a2315ca71f1aab0f7505bda5078b36633ce9e0ab",
-				"dweb:/ipfs/QmeaPbQ9BdHdq6ZUbwN8p9HUp6WRgQRmMaZJGKJCzknaa1"
+				"bzz-raw://9d9b46b6c3531fc542dc83ff6f10ae5fafc232a0e2affe3ae621362510f47bdf",
+				"dweb:/ipfs/QmeBDyHRFwWBGZa9JZgo1XpFQmeWwQvXf8coo22HQzwh16"
 			]
 		}
 	},

@@ -5,12 +5,13 @@ pragma solidity >=0.8.0 <0.9.0;
 import "hardhat/console.sol";
 import "OpenZeppelin.mod/Strings.sol";
 import "OpenZeppelin.mod/math/SafeMath.sol";
+import "auth.sol";
 /**
  * @title Owner
  * @dev Set & change owner
  */
 contract Projects {
-
+    Auth auth;
     address private owner;
 
     struct cProjects {
@@ -64,24 +65,15 @@ contract Projects {
     /**
      * @dev Set contract deployer as owner
      */
-    constructor() {
+    constructor(address authAddress) {
         console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
+        auth = Auth(authAddress);
     }
 
-    /**
-     * @dev Change owner
-     * @param newOwner address of new owner
-     */
-    function changeOwner(address newOwner) public isOwner {
-        emit OwnerSet(owner, newOwner);
-        owner = newOwner;
-    }
-
-
-    function createProject(string memory title, string memory project, string[] memory attachments, int256 value) public payable returns (uint256) {
-        
+    function createProject(string memory title, string memory project, string[] memory attachments, int256 value, bytes32 session) public payable returns (uint256) {
+         auth.checkLogin(session);       
         require(bytes(project).length > 10, "Text to small");
         require(bytes(title).length > 4, "Text too small");
 
@@ -104,7 +96,8 @@ contract Projects {
         return projects.length-1;
     }
 
-    function proposeEdit(uint256 id, string memory project, string[] memory enhanchments, uint256[] memory values, string[] memory attachments) public payable {
+    function proposeEdit(uint256 id, string memory project, string[] memory enhanchments, uint256[] memory values, string[] memory attachments, bytes32 session) public payable {
+        auth.checkLogin(session);
          cProjects memory Project = cProjects({
             title:projects[id][0].title,
             project:project,
@@ -119,8 +112,8 @@ contract Projects {
         projects[id].push(Project);
     }
 
-    function proposeEnhanchmentEdit(uint256 id, uint256 eId, uint256 version, string memory enhanchment, uint256 value) public payable {
-         
+    function proposeEnhanchmentEdit(uint256 id, uint256 eId, uint256 version, string memory enhanchment, uint256 value, bytes32 session) public payable {
+         auth.checkLogin(session);        
          cProjects memory Project = cProjects({
             title:projects[id][version].title,
             project: projects[id][version].project,
@@ -138,7 +131,8 @@ contract Projects {
             projects[id].push(Project);
     }
 
-    function vote(uint256 id, uint256 version, int256 v) public payable {
+    function vote(uint256 id, uint256 version, int256 v,  bytes32 session) public payable {
+        auth.checkLogin(session);
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
 

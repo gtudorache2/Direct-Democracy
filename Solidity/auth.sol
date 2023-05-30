@@ -24,12 +24,14 @@ import "cypher.sol";
         string companyCode;
         address blockAccount;
         bytes32 UID;
+        bytes32 session;
     }
 
-    event accountCreated(bytes32 UID);
- 
+    event accountCreated(address UID);
+    event loggedIn(bytes32 session);
 
-    mapping(bytes32 => person) persons;
+    uint256 population;
+    mapping(address => person) persons;
 
     constructor() {
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
@@ -40,17 +42,18 @@ import "cypher.sol";
         require(owner == msg.sender, "Not allowed");
     }
 
-    function createAccount(string memory fullName, string memory SSN, string memory homeAddress, string memory pass, uint8 accountType, string memory phone, address addr, string memory companyCode) public payable returns (bytes32)
+    function createAccount(string memory fullName, string memory SSN, string memory homeAddress, string memory pass, uint8 accountType, string memory phone, address addr, string memory companyCode) public payable returns (address)
     {
         isOwner();
 
         require(accountType <= 5, "Invalid company type");
-        require(bytes(SSN).length == 13, "Invalid SSN");
+        require(bytes(SSN).length == 13, string.concat("Invalid SSN : ",SSN));
         require(bytes(fullName).length > 6, "Invalid name");
         require(bytes(homeAddress).length > 10, "Invalid address");
         require(bytes(pass).length > 8, "Password too short");
         require(bytes(phone).length > 6, "Phone number too short");
-        bytes32 UID = keccak256(abi.encodePacked(string.concat(fullName,SSN,Strings.toString(accountType),homeAddress,pass,phone)));
+        address UID = msg.sender;
+        bytes32 UID2 = keccak256(abi.encodePacked(string.concat(fullName,SSN,Strings.toString(accountType),homeAddress,pass,phone)));
         //persons.push();
         if (accountType == 0)
         {
@@ -58,12 +61,13 @@ import "cypher.sol";
                 fullName : string(cypher.encrypt(bytes(fullName), bytes(pass))),
                 SSN : string(cypher.encrypt(bytes(SSN), bytes(pass))),
                 homeAddress : string(cypher.encrypt(bytes(homeAddress), bytes(pass))),
-                pass : string(abi.encodePacked(keccak256(abi.encodePacked(pass)))),
+                pass : Strings.toHexString(uint256(keccak256(abi.encodePacked(pass)))),
                 phone : string(cypher.encrypt(bytes(phone), bytes(pass))),
                 accountType: accountType,
                 blockAccount : addr,
-                UID: UID,
-                companyCode: "0"
+                UID: UID2,
+                companyCode: "0",
+                session: keccak256(abi.encodePacked(string.concat(pass,string(abi.encodePacked(UID)), Strings.toString(block.timestamp))))
             });
         }
         else
@@ -76,15 +80,24 @@ import "cypher.sol";
                 phone : phone,
                 accountType: accountType,
                 blockAccount : addr,
-                UID: UID,
-                companyCode:companyCode           
+                UID: UID2,
+                companyCode:companyCode,
+                session: keccak256(abi.encodePacked(string.concat(pass,string(abi.encodePacked(UID)), Strings.toString(block.timestamp))))
             });
         }
+        population++;
         emit accountCreated(UID);
         return UID;
     }
 
-    function getUser(bytes32 UID, string memory pass) public view returns(person memory)
+    function deleteUser(address UID) public payable {
+        isOwner();
+
+        delete persons[UID];
+        population--;
+    }
+
+    function getUser(address UID, string memory pass) public view returns(person memory)
     {
         person memory censoredPerson;
 
@@ -100,7 +113,8 @@ import "cypher.sol";
                 accountType: persons[UID].accountType,
                 blockAccount:msg.sender,
                 UID : persons[UID].UID,
-                companyCode : persons[UID].companyCode
+                companyCode : persons[UID].companyCode,
+                session : "***********"
             });
         }
         else
@@ -113,8 +127,9 @@ import "cypher.sol";
                 phone : string(cypher.encrypt(bytes(persons[UID].phone), bytes(pass))),
                 accountType: persons[UID].accountType,
                 blockAccount : persons[UID].blockAccount,
-                UID: UID,
-                companyCode: persons[UID].companyCode
+                UID: persons[UID].UID,
+                companyCode: persons[UID].companyCode,
+                session: "************"
             });           
         }
 
@@ -129,20 +144,19 @@ import "cypher.sol";
                 accountType: persons[UID].accountType,
                 blockAccount:persons[UID].blockAccount,
                 UID : persons[UID].UID,
-                companyCode: persons[UID].companyCode
+                companyCode: persons[UID].companyCode,
+                session: "*************"
             });
         }
 
-        if (authenthicate(UID, pass))
-        {
-            censoredPerson.pass = persons[UID].pass;
-        }
         return censoredPerson;
     }
 
-    function editUser(bytes32 UID, string memory fullName, string memory homeAddress, string memory phone, address blockAccount, string memory companyCode, string memory pass) public payable
+    function editUser(string memory fullName, string memory homeAddress, string memory phone, address blockAccount, string memory companyCode, bytes32 session) public payable
     {
-         if ((persons[UID].blockAccount != msg.sender) && (authenthicate(UID, pass)))    
+         checkLogin(session);
+        address UID = msg.sender;
+         if ((persons[UID].blockAccount != msg.sender))    
          {
              persons[UID].fullName = fullName;
              persons[UID].homeAddress = homeAddress;
@@ -156,7 +170,21 @@ import "cypher.sol";
         return keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));
     }
 
-    function authenthicate(bytes32 UID, string memory pass) public view returns(bool) {
-        return compare(string(abi.encodePacked(keccak256(abi.encodePacked(pass)))), persons[UID].pass);
+    function authenthicate(address UID, string memory pass) public payable returns(bytes32) {
+        
+        
+        require((persons[UID].blockAccount == msg.sender) && (compare(pass, persons[UID].pass)), string.concat("Incorrect password p",persons[UID].pass));
+
+        persons[UID].session = keccak256(abi.encodePacked(string.concat(pass,string(abi.encodePacked(UID)), Strings.toString(block.timestamp))));        
+        emit loggedIn(persons[UID].session);
+        return persons[UID].session;
+    }
+
+    function checkLogin(bytes32 session) public view {
+        require(persons[msg.sender].session == session, "Not authenthicated");
+    }
+
+    function getPopulation() public view returns (uint256) {
+        return population;
     }
  }

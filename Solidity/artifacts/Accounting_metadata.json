@@ -20,13 +20,8 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "UID",
+						"name": "session",
 						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "pass",
-						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -96,13 +91,8 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "UID",
+						"name": "session",
 						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "pass",
-						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -181,13 +171,8 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "UID",
+						"name": "session",
 						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "pass",
-						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -210,13 +195,8 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "UID",
+						"name": "session",
 						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "pass",
-						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -239,13 +219,8 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "UID",
+						"name": "session",
 						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "pass",
-						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -326,19 +301,19 @@
 			]
 		},
 		"accounting.sol": {
-			"keccak256": "0xdbfe82a3a80c2932882f0994afc449e88742ff7deea4f9e102485ee058366eb2",
+			"keccak256": "0x60ab20f8c3a2d21d2f1a9dd92a961bf3a5c99f8a0d0c864c2c587f83a72dceaf",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://5f750e9deffd655381b34a5d5cded9da27489a655eac0dfe7c647c72146af960",
-				"dweb:/ipfs/QmQr8DokxULUEiMttNBgs6pmZzkPwTMAhcubaPumpwWjCD"
+				"bzz-raw://f402662987f84f4b619c009bf8edb9f807eb0b6dca0cccd2ddc5f3de0f1832e1",
+				"dweb:/ipfs/QmeAQjp6M1qNpu6vAEB4JM53iXYjyT7VH7rUWk2j8MxoNw"
 			]
 		},
 		"auth.sol": {
-			"keccak256": "0x3f1a537efd7b8d1e7f5bb7ee261ad5cfb7d58a0153af1f908be1f534a0c65e8c",
+			"keccak256": "0x38e3ec7f80f3d053115c106d03e13e7591d1f64d1d90f273bbfb805c1121a232",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://0ad98425c3f59b64242dd0ba27c7ea0899cd686550862808ac76333a419eafa1",
-				"dweb:/ipfs/QmfXvkLxK6L97yoMrjHwwtXxJo6vTNLXmMduju4Ku2g1eF"
+				"bzz-raw://632d17b62408cab9a4b98b747007084f7d8e7d14a20b51be7d90cd5e6873529b",
+				"dweb:/ipfs/QmUsPdxgFBUCqB4UVmgC5X8ifjzygLKevKPmaVrnp2B6hA"
 			]
 		},
 		"cypher.sol": {

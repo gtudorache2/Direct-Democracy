@@ -5,12 +5,10 @@ pragma solidity >=0.7.0 <0.9.0;
 import "hardhat/console.sol";
 import "OpenZeppelin.mod/Strings.sol";
 import "OpenZeppelin.mod/math/SafeMath.sol";
-/**
- * @title Owner
- * @dev Set & change owner
- */
+import "auth.sol";
+
 contract Taxes {
- 
+    Auth auth;
     address private owner;
 
     struct cCustomTaxesProp {
@@ -50,27 +48,10 @@ contract Taxes {
     cStandardTaxesProp[] standardTaxesProp;
     cProductsProp[] productsTaxesProp;
 
-    // event for EVM logging
-    event OwnerSet(address indexed oldOwner, address indexed newOwner);
-
-    // modifier to check if caller is owner
-    modifier isOwner() {
-        // If the first argument of 'require' evaluates to 'false', execution terminates and all
-        // changes to the state and to Ether balances are reverted.
-        // This used to consume all gas in old EVM versions, but not anymore.
-        // It is often a good idea to use 'require' to check if functions are called correctly.
-        // As a second argument, you can also provide an explanation about what went wrong.
-        require(msg.sender == owner, "Caller is not owner");
-        _;
-    }
-
-    /**
-     * @dev Set contract deployer as owner
-     */
-    constructor() {
+    constructor(address authAddress) {
         console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
-        emit OwnerSet(address(0), owner);
+
         standardTaxesProp.push(
             cStandardTaxesProp({
                 PIT:16,
@@ -81,6 +62,8 @@ contract Taxes {
                 total:0
             })
         );
+
+        auth = Auth(authAddress);
     }
 
     /**
@@ -96,8 +79,9 @@ contract Taxes {
         return owner;
     }
 
-    function proposeStandardTaxes(int8 PIT,int8 CIT,int8 VAT,int8 Health) public payable
+    function proposeStandardTaxes(int8 PIT,int8 CIT,int8 VAT,int8 Health,  bytes32 session) public payable
     {
+        auth.checkLogin(session);
         standardTaxesProp.push(
             cStandardTaxesProp({
                 PIT:PIT,
@@ -111,8 +95,9 @@ contract Taxes {
     }
 
 
-    function proposeCustomTaxes(string memory companyID, int8 tax) public payable
+    function proposeCustomTaxes(string memory companyID, int8 tax, bytes32 session) public payable
     {
+        auth.checkLogin(session);
         customTaxesProp.push(
             cCustomTaxesProp({
                 companyID:companyID,
@@ -123,8 +108,9 @@ contract Taxes {
         );
     }
 
-    function proposeProductTaxes(string memory productID, int8 tax) public payable
+    function proposeProductTaxes(string memory productID, int8 tax,  bytes32 session) public payable
     {
+        auth.checkLogin(session);
         productsTaxesProp.push(
             cProductsProp({
                 productID:productID,
@@ -208,7 +194,8 @@ contract Taxes {
         }
     }
 
-    function vote(uint256 id, int256 v) public payable {
+    function vote(uint256 id, int256 v, bytes32 session) public payable {
+        auth.checkLogin(session);        
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
 
@@ -232,7 +219,8 @@ contract Taxes {
         standardTaxesProp[id].total += 1;
     }
 
-    function voteCustom(uint256 id, int256 v) public payable {
+    function voteCustom(uint256 id, int256 v,  bytes32 session) public payable {
+        auth.checkLogin(session);
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
 
@@ -256,7 +244,8 @@ contract Taxes {
         customTaxesProp[id].total += 1;
     }
 
-    function voteProduct(uint256 id, int256 v) public payable {
+    function voteProduct(uint256 id, int256 v,  bytes32 session) public payable {
+        auth.checkLogin(session);
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
 

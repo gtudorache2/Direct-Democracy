@@ -5,12 +5,13 @@ pragma solidity >=0.8.0 <0.9.0;
 import "hardhat/console.sol";
 import "OpenZeppelin.mod/Strings.sol";
 import "OpenZeppelin.mod/math/SafeMath.sol";
+import "auth.sol";
 /**
  * @title Owner
  * @dev Set & change owner
  */
 contract Laws {
-
+    Auth auth;
     address private owner;
 
     struct cLaws {
@@ -51,24 +52,15 @@ contract Laws {
     /**
      * @dev Set contract deployer as owner
      */
-    constructor() {
+    constructor(address authAddress) {
         console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
+        auth = Auth(authAddress);
     }
 
-    /**
-     * @dev Change owner
-     * @param newOwner address of new owner
-     */
-    function changeOwner(address newOwner) public isOwner {
-        emit OwnerSet(owner, newOwner);
-        owner = newOwner;
-    }
-
-
-    function createLaw(string memory title, string memory law, string[] memory articles, string[] memory documents) public payable returns (uint256) {
-        
+    function createLaw(string memory title, string memory law, string[] memory articles, string[] memory documents, bytes32 session) public payable returns (uint256) {
+        auth.checkLogin(session);        
         require(bytes(law).length > 10, "Text to small");
         require(bytes(title).length > 4, "Text too small");
 
@@ -89,7 +81,8 @@ contract Laws {
         return laws.length-1;
     }
 
-    function proposeEdit(uint256 id, string memory law, string[] memory articles, string[] memory documents) public payable {
+    function proposeEdit(uint256 id, string memory law, string[] memory articles, string[] memory documents,bytes32 session) public payable {
+        auth.checkLogin(session);         
          cLaws memory Law = cLaws({
             title:laws[id][0].title,
             law:law,
@@ -102,7 +95,8 @@ contract Laws {
         laws[id].push(Law);
     }
 
-    function proposeArticleEdit(uint256 id, uint256 articleId, uint256 version, string memory article) public payable {
+    function proposeArticleEdit(uint256 id, uint256 articleId, uint256 version, string memory article, bytes32 session) public payable {
+         auth.checkLogin(session);
          cLaws memory Law = cLaws({
             title:laws[id][version].title,
             law: laws[id][version].law,
@@ -117,10 +111,10 @@ contract Laws {
         laws[id].push(Law);
     }
 
-    function vote(uint256 id, uint256 version, int256 v) public payable {
+    function vote(uint256 id, uint256 version, int256 v, bytes32 session) public payable {
+        auth.checkLogin(session);
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
-
 
         for(uint256 i = 0; i < votes[id].length; i++)
         {
@@ -177,6 +171,7 @@ contract Laws {
                 version = i;
             }
         }
+
     }
 
     function getLaw(uint256 id) public view returns (string memory law)
@@ -184,6 +179,27 @@ contract Laws {
         uint256 version = getCurrentVersion(id);
 
         law = getRevision(id, version);
+    }
+
+    function getPassedVersion(uint256 id) public view returns (string memory law)
+    {
+        int256 max = 0;
+        int256 version = -1;
+        uint256 population = auth.getPopulation();
+
+        for(uint256 i = 0; i < laws[id].length; i++)
+        {
+            (bool b, int256 v) = SafeMath.tryDiv((laws[id][i].votes*10000), int256(laws[id][i].total));
+            if ((b) && (v >= max) && (v >= int256(population*30/100)))
+            {
+                version = int256(i);
+            }
+        }
+
+        if (version > -1)
+            law = getRevision(id, uint256(version));
+        else
+            law = "The law hasn't passed yet !";
     }
 
     function getLawCount() public view returns(uint256 count)

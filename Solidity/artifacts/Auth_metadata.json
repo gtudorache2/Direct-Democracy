@@ -15,20 +15,33 @@
 				"inputs": [
 					{
 						"indexed": false,
-						"internalType": "bytes32",
+						"internalType": "address",
 						"name": "UID",
-						"type": "bytes32"
+						"type": "address"
 					}
 				],
 				"name": "accountCreated",
 				"type": "event"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "bytes32",
-						"name": "UID",
+						"name": "session",
 						"type": "bytes32"
+					}
+				],
+				"name": "loggedIn",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "UID",
+						"type": "address"
 					},
 					{
 						"internalType": "string",
@@ -39,11 +52,24 @@
 				"name": "authenthicate",
 				"outputs": [
 					{
-						"internalType": "bool",
+						"internalType": "bytes32",
 						"name": "",
-						"type": "bool"
+						"type": "bytes32"
 					}
 				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
+					}
+				],
+				"name": "checkLogin",
+				"outputs": [],
 				"stateMutability": "view",
 				"type": "function"
 			},
@@ -93,9 +119,9 @@
 				"name": "createAccount",
 				"outputs": [
 					{
-						"internalType": "bytes32",
+						"internalType": "address",
 						"name": "",
-						"type": "bytes32"
+						"type": "address"
 					}
 				],
 				"stateMutability": "payable",
@@ -104,10 +130,18 @@
 			{
 				"inputs": [
 					{
-						"internalType": "bytes32",
+						"internalType": "address",
 						"name": "UID",
-						"type": "bytes32"
-					},
+						"type": "address"
+					}
+				],
+				"name": "deleteUser",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "string",
 						"name": "fullName",
@@ -134,9 +168,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "string",
-						"name": "pass",
-						"type": "string"
+						"internalType": "bytes32",
+						"name": "session",
+						"type": "bytes32"
 					}
 				],
 				"name": "editUser",
@@ -145,11 +179,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getPopulation",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
-						"internalType": "bytes32",
+						"internalType": "address",
 						"name": "UID",
-						"type": "bytes32"
+						"type": "address"
 					},
 					{
 						"internalType": "string",
@@ -204,6 +251,11 @@
 							{
 								"internalType": "bytes32",
 								"name": "UID",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "session",
 								"type": "bytes32"
 							}
 						],
@@ -268,11 +320,11 @@
 			]
 		},
 		"auth.sol": {
-			"keccak256": "0x3f1a537efd7b8d1e7f5bb7ee261ad5cfb7d58a0153af1f908be1f534a0c65e8c",
+			"keccak256": "0x1e482e99933b911b3bc584035c097a08bf94c9ea1f054abd2694cbcf2b59aefa",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://0ad98425c3f59b64242dd0ba27c7ea0899cd686550862808ac76333a419eafa1",
-				"dweb:/ipfs/QmfXvkLxK6L97yoMrjHwwtXxJo6vTNLXmMduju4Ku2g1eF"
+				"bzz-raw://a7b3548fa2489029ce6920af50efa936efede3a61e5dd24f566ab5522b77bff5",
+				"dweb:/ipfs/QmVfRGV9hGaThGBDEoqpekTaCN98SCFvWADywEVCxTSm7H"
 			]
 		},
 		"cypher.sol": {

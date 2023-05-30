@@ -9,6 +9,7 @@
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/web3@1.2.11/dist/web3.min.js"></script>
 <script src="engine/platform.js"></script>
+<script src="engine/auth.js" defer></script>
 <script src="engine/taxesPlatform.js" defer></script>
 <script src="engine/projectsPlatform.js" defer></script>
 <link href="assets/css/style.css" rel="stylesheet">
