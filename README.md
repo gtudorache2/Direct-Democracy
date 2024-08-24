@@ -10,6 +10,7 @@ The backend is written in Solidity, the frontend is written in Javascript with a
 - A company types database (Romanian CAEN list that can be replaced with any country list)
 - A company system
 - A decentralized currency system
+- An users system
 
 The system currently needs reorganizing and cleaning...
 
