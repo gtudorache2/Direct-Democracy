@@ -1,0 +1,153 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "caen",
+								"type": "string[]"
+							},
+							{
+								"internalType": "string",
+								"name": "streetAddress",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "phoneNumber",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"components": [
+									{
+										"internalType": "address",
+										"name": "shareHolder",
+										"type": "address"
+									},
+									{
+										"internalType": "int8",
+										"name": "shares",
+										"type": "int8"
+									}
+								],
+								"internalType": "struct companies.shares[]",
+								"name": "shareHolders",
+								"type": "tuple[]"
+							},
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "logo",
+								"type": "string"
+							}
+						],
+						"internalType": "struct companies.company",
+						"name": "c",
+						"type": "tuple"
+					}
+				],
+				"name": "addCompany",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Solidity/contracts/companies.sol": "companies"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Solidity/contracts/OpenZeppelin.mod/Strings.sol": {
+			"keccak256": "0x2626d8ab3dfdad0fad630c212ad146d59473d0f48b771784c61a7c1dbbea1f3f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d7c144532f1e7c76ac95fb6a8f617c1f740d7a73442a907eb60910e99dfa1fbf",
+				"dweb:/ipfs/QmZsGyooD6emxB8JCuugRjnRYS2MPZEL586uuV7dgC8Jng"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/math/Math.sol": {
+			"keccak256": "0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://33bbf48cc069be677705037ba7520c22b1b622c23b33e1a71495f2d36549d40b",
+				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/math/SafeMath.sol": {
+			"keccak256": "0x10c1e0b85075dc314ca5a9cc6b5f7bca27f4e3333c4adc5dc1e6981eb385b2cb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://02a8697db71395fc9d1a5c1d42682deb625315052d32c09de39753864d06d375",
+				"dweb:/ipfs/QmYqvi5k5nAGtKT59d5m84swQjByuNabu54RV2fvuMVLDV"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/math/SignedMath.sol": {
+			"keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
+				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
+			]
+		},
+		"Solidity/contracts/companies.sol": {
+			"keccak256": "0xd9d959a1230a000c9dc9403f69aeb56d9b5ab11a923f0aa88d1888340a74f7db",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://14c980f3b1e4a8da81323297fc14817be6662d6e56d6adf8a8256fa6ee1ce308",
+				"dweb:/ipfs/QmQ3v2QpbcUUQXz6Lm19s6n3wkGBaDegNCCr7veLL9tTN7"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x7434453e6d3b7d0e5d0eb7846ffdbc27f0ccf3b163591263739b628074dc103a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://49355f780520494d1d5a0f01858385e51bb5280ce0ecfb960f16995065dca395",
+				"dweb:/ipfs/QmSwJ6C5QLz6xKeQZS8wbwjU1KxRFTYfwbGmtzisd5sRW4"
+			]
+		}
+	},
+	"version": 1
+}

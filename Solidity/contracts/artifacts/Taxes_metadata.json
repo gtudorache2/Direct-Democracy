@@ -1,0 +1,368 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "personsContract",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "tokensContract",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnerSet",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCurrentTaxes",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "int8",
+								"name": "PIT",
+								"type": "int8"
+							},
+							{
+								"internalType": "int8",
+								"name": "CIT",
+								"type": "int8"
+							},
+							{
+								"internalType": "int8",
+								"name": "VAT",
+								"type": "int8"
+							},
+							{
+								"internalType": "int8",
+								"name": "Health",
+								"type": "int8"
+							},
+							{
+								"internalType": "int256",
+								"name": "votes",
+								"type": "int256"
+							},
+							{
+								"internalType": "int256",
+								"name": "total",
+								"type": "int256"
+							}
+						],
+						"internalType": "struct Taxes.cStandardTaxesProp",
+						"name": "taxes",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCustomTaxes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "taxes",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVotes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "v",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "companyID",
+						"type": "string"
+					},
+					{
+						"internalType": "int8",
+						"name": "tax",
+						"type": "int8"
+					}
+				],
+				"name": "proposeCustomTaxes",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "int8",
+						"name": "PIT",
+						"type": "int8"
+					},
+					{
+						"internalType": "int8",
+						"name": "CIT",
+						"type": "int8"
+					},
+					{
+						"internalType": "int8",
+						"name": "VAT",
+						"type": "int8"
+					},
+					{
+						"internalType": "int8",
+						"name": "Health",
+						"type": "int8"
+					}
+				],
+				"name": "proposeStandardTaxes",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "v",
+						"type": "int256"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "v",
+						"type": "int256"
+					}
+				],
+				"name": "voteCustom",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Set & change owner",
+			"kind": "dev",
+			"methods": {
+				"changeOwner(address)": {
+					"details": "Change owner",
+					"params": {
+						"newOwner": "address of new owner"
+					}
+				},
+				"getOwner()": {
+					"details": "Return owner address ",
+					"returns": {
+						"_0": "address of owner"
+					}
+				}
+			},
+			"stateVariables": {
+				"_personsContract": {
+					"details": "Set contract deployer as owner"
+				}
+			},
+			"title": "Owner",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Solidity/contracts/taxes.sol": "Taxes"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Solidity/contracts/IERC20.sol": {
+			"keccak256": "0xc6832ac50e10c30098071afd5bde476a638b31f2c33af23fb51dd05817343977",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e5f415f2ac95d8a4026e0509895d17c968a1f7a5e34dc4189ffc812e71c39af",
+				"dweb:/ipfs/QmY4oQSJjRHsGan1meJ7WkgBP9rkNF89nxQPSYTR9RuvWD"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/Strings.sol": {
+			"keccak256": "0x2626d8ab3dfdad0fad630c212ad146d59473d0f48b771784c61a7c1dbbea1f3f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d7c144532f1e7c76ac95fb6a8f617c1f740d7a73442a907eb60910e99dfa1fbf",
+				"dweb:/ipfs/QmZsGyooD6emxB8JCuugRjnRYS2MPZEL586uuV7dgC8Jng"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/math/Math.sol": {
+			"keccak256": "0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://33bbf48cc069be677705037ba7520c22b1b622c23b33e1a71495f2d36549d40b",
+				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/math/SafeMath.sol": {
+			"keccak256": "0x10c1e0b85075dc314ca5a9cc6b5f7bca27f4e3333c4adc5dc1e6981eb385b2cb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://02a8697db71395fc9d1a5c1d42682deb625315052d32c09de39753864d06d375",
+				"dweb:/ipfs/QmYqvi5k5nAGtKT59d5m84swQjByuNabu54RV2fvuMVLDV"
+			]
+		},
+		"Solidity/contracts/OpenZeppelin.mod/math/SignedMath.sol": {
+			"keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
+				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
+			]
+		},
+		"Solidity/contracts/currency.sol": {
+			"keccak256": "0xe92353a1df2c1e721ef3d66e9f095e93590c7d42a3d31bf5fa44f5ea0e0b3ebf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b642adf869f1ac71cbbfb9e9d37c4a97c3db4d177924a28ba4e43ac58e47d9d5",
+				"dweb:/ipfs/QmQjQRjcw8hzobtgiTnAH7RLhH2RNUpFbo1D3n1BhmrGgT"
+			]
+		},
+		"Solidity/contracts/extensions/IERC20Metadata.sol": {
+			"keccak256": "0xd17de2714e37caef0ff51b3dc398519944a2f692b02cb96619e735649dda81d4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c0114d306b869bd6123afc0ea840e911db7aceb055fac280c047f95de24ee71e",
+				"dweb:/ipfs/QmSpc2je9y33s7MmNekM7NBgBmYSdmms6oJvR25WL4Jsiz"
+			]
+		},
+		"Solidity/contracts/interfaces/draft-IERC6093.sol": {
+			"keccak256": "0x48969749fd1cd62dc8c86d7682be88440df1543069b54e4bbd09b411cb535f80",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://54217f30149181466bef040fdd80717f7869983054468bbf368bd34eb5c05dca",
+				"dweb:/ipfs/Qma6LV33ST3zZSPKWQMJi1EHLGZ6gE4hK2b5kkMBVU9Nyc"
+			]
+		},
+		"Solidity/contracts/taxes.sol": {
+			"keccak256": "0x50771469ee91667dc0a1973cd888a9c1081e99b9a3834c995357c5e37fbe5949",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://ee7648b3241948da0861ee943b14d8edab6c8b75d95976d0d445016de71f1f4b",
+				"dweb:/ipfs/QmWUu7VXoYPfG5NVMs6koZGRMQ9P5R1ACMQiQGC8fnzsSG"
+			]
+		},
+		"Solidity/contracts/users.sol": {
+			"keccak256": "0xe75aa490ed87aa29182cde8803802b448037fab11a3be30e30000f363c63f4d7",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a99255d97640eb4710f93adf94cf048b551d1a26fbbac50af957b6be7c3425ca",
+				"dweb:/ipfs/QmPBfCPZYpxN1QXJq2qrKu9aEoneSiFyw7ESL8H6zAH3NA"
+			]
+		},
+		"Solidity/contracts/utils/Context.sol": {
+			"keccak256": "0x47f10494606b86ed149dcaad74cb401ad9311696f14689410c45c7330e3f34fb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8f393625f893d7c666e014fd8e9b8cf59f7fe21b030f80f571d892006cdd77e6",
+				"dweb:/ipfs/QmQVtX3R1LqVz2KVyzsRmVM6Zgkf9acU4Cn2hhXxYYev9U"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x7434453e6d3b7d0e5d0eb7846ffdbc27f0ccf3b163591263739b628074dc103a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://49355f780520494d1d5a0f01858385e51bb5280ce0ecfb960f16995065dca395",
+				"dweb:/ipfs/QmSwJ6C5QLz6xKeQZS8wbwjU1KxRFTYfwbGmtzisd5sRW4"
+			]
+		}
+	},
+	"version": 1
+}
