@@ -61,7 +61,7 @@
       </div>
       <div class="modal-body">
 	  Company type : <br>
-	  <input type="text" id="type"><br>
+	  <input type="text" id="type" value="<?=$_GET['caen']?>"><br>
 	  Tax :<br>
 	  <input type="number" id="tax"><br>
 	  </div>
@@ -108,6 +108,13 @@
 
        $('docment').ready(() =>{
         displayCustomTaxes();
+		<?php
+	if ($_GET['action'] == 'addTax') {
+		?>
+		$('#taxes-modal').modal('show');
+		<?php
+	}
+	?>
        })
 	   <!-- Vendor JS Files -->
 	  $.ajax({
@@ -125,6 +132,7 @@
 			}
 		}
 	}
+
 	</script>
 
 

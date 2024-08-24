@@ -24,7 +24,7 @@
                     <div class="card-text">
                         <table id="types">
                             <thead>
-                                    <th>Code</th><th>Description</th><th>Level</th>
+                                    <th>Code</th><th>Description</th><th>Level</th><th>Action</th>
                             </thead>
                             <tbody>
                             </tbody>
@@ -45,6 +45,14 @@ $(document).ready(function() {
     async: false,
     success: function (csvd) {
         var items = $.csv.toObjects(csvd);
+        for(var i = 0; i < items.length; i++) {
+            item = {"Cod" : items[i].Cod,
+                    "Titlu" : items[i].Titlu,
+                    "Nivel" : items[i].Nivel,
+                    "Actiune" : '<form method="get" action="custom_taxes.php"><input type="hidden" name="action" value="addTax"><input type="hidden" name="caen" value="'+items[i].Cod+'"><button class="btn btn-success">Request Tax</button></form>'
+            }
+            items[i] = item;
+        }
         var obj = {data: items}
        jsonobject = JSON.stringify(obj);
         console.log(jsonobject);
@@ -53,7 +61,8 @@ $(document).ready(function() {
             columns:[
                 { "searchable": true, data : "Cod" },
                 { "searchable": true, data: "Titlu"  },
-                { "searchable": true, data : "Nivel"  }
+                { "searchable": true, data : "Nivel"  },
+                { "searchable": false, data : "Actiune"}
             ]
     })
 }
