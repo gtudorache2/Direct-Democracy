@@ -3,8 +3,10 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "hardhat/console.sol";
-import "OpenZeppelin.mod/Strings.sol";
-import "OpenZeppelin.mod/math/SafeMath.sol";
+import "./OpenZeppelin.mod/Strings.sol";
+import "./OpenZeppelin.mod/math/SafeMath.sol";
+import "./currency.sol";
+import "./users.sol";
 /**
  * @title Owner
  * @dev Set & change owner
@@ -51,10 +53,16 @@ contract Laws {
     /**
      * @dev Set contract deployer as owner
      */
-    constructor() {
+
+    address _personsContract;
+    address _tokensContract;
+
+    constructor(address personsContract, address tokensContract) {
         console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
+        _personsContract = personsContract;
+        _tokensContract = tokensContract;
     }
 
     /**
@@ -68,7 +76,7 @@ contract Laws {
 
 
     function createLaw(string memory title, string memory law, string[] memory articles, string[] memory documents) public payable returns (uint256) {
-        
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");        
         require(bytes(law).length > 10, "Text to small");
         require(bytes(title).length > 4, "Text too small");
 
@@ -90,6 +98,7 @@ contract Laws {
     }
 
     function proposeEdit(uint256 id, string memory law, string[] memory articles, string[] memory documents) public payable {
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
          cLaws memory Law = cLaws({
             title:laws[id][0].title,
             law:law,
@@ -103,6 +112,7 @@ contract Laws {
     }
 
     function proposeArticleEdit(uint256 id, uint256 articleId, uint256 version, string memory article) public payable {
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
          cLaws memory Law = cLaws({
             title:laws[id][version].title,
             law: laws[id][version].law,
@@ -120,7 +130,7 @@ contract Laws {
     function vote(uint256 id, uint256 version, int256 v) public payable {
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
-
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
 
         for(uint256 i = 0; i < votes[id].length; i++)
         {

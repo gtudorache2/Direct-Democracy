@@ -3,8 +3,10 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 import "hardhat/console.sol";
-import "OpenZeppelin/contracts/utils/Strings.sol";
-import "OpenZeppelin/contracts/utils/math/SafeMath.sol";
+import "./OpenZeppelin.mod/Strings.sol";
+import "./OpenZeppelin.mod/math/SafeMath.sol";
+import "./users.sol";
+import "./currency.sol";
 /**
  * @title Owner
  * @dev Set & change owner
@@ -57,7 +59,11 @@ contract Taxes {
     /**
      * @dev Set contract deployer as owner
      */
-    constructor() {
+
+    address _personsContract;
+    address _tokensContract;
+
+    constructor(address personsContract, address tokensContract) {
         console.log("Owner contract deployed by:", msg.sender);
         owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
         emit OwnerSet(address(0), owner);
@@ -71,6 +77,9 @@ contract Taxes {
                 total:0
             })
         );
+
+        _personsContract = personsContract;
+        _tokensContract = tokensContract;
     }
 
     /**
@@ -92,6 +101,7 @@ contract Taxes {
 
     function proposeStandardTaxes(int8 PIT,int8 CIT,int8 VAT,int8 Health) public payable
     {
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
         standardTaxesProp.push(
             cStandardTaxesProp({
                 PIT:PIT,
@@ -106,6 +116,7 @@ contract Taxes {
 
     function proposeCustomTaxes(string memory companyID, int8 tax) public payable
     {
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
         customTaxesProp.push(
             cCustomTaxesProp({
                 companyID:companyID,
@@ -142,7 +153,7 @@ contract Taxes {
     function getCustomTaxes() public view returns(string memory taxes)
     {
         int256 max = 0;
-        uint256 maxStandard = 0;
+     //   uint256 maxStandard = 0;
         //uint256 maxCustom = 0;
 
         if (customTaxesProp.length > 0)
@@ -185,7 +196,7 @@ contract Taxes {
     function vote(uint256 id, int256 v) public payable {
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
-
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
         if (votes.length > 0)
         for(uint256 i = 0; i < votes.length; i++)
         {
@@ -207,6 +218,7 @@ contract Taxes {
     }
 
     function voteCustom(uint256 id, int256 v) public payable {
+        require(users(_personsContract).isActive(msg.sender), "NOT_A_CITIZEN");
         require(v >= -1, "Invalid vote");
         require(v <= 1, "Invalid vote");
 

@@ -20,6 +20,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.18.3/collect.min.js" integrity="sha512-LkKpealLJ+RNIuYaXSC+l/0Zf5KjYCpMaUrON9WUC+LG316w3UEImyaUpWMWfqNGC4vLOkxDWEVKQE+Wp0shKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	</head>
         <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
 		<link rel="stylesheet" href="style.css" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	<body>
 
 
 </head>
@@ -31,7 +32,7 @@
     <div class="container">
 		<div class="card card-default">
 			<div class="card-body">	
-				<div class="card-title h4">Vote taxes 
+				<div class="card-title h4">Vote company taxes 
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taxes-modal">
     				Propose
   				</button></div>
@@ -39,7 +40,7 @@
                     <hr>
 					<table id="revisions" width="100%">
 					<thead>
-						<td>Rev.</td><td>Votes</td><td>Personal Tax</td><td>Company Tax</td><td>Value added</td><td>Health</td><td>Action</td>
+						<td>Rev. </td><td>Company type</td><td>Tax</td><td>Votes</td><td>Action</td>
 					</thead>
 					<tbody>
 					</tbody>
@@ -59,17 +60,13 @@
         <button type="button" class="btn-close" onclick="$('#taxes-modal').modal('hide')" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-	  PIT (Personal Income Tax) : <br>
-	  <input type="number" id="PIT"><br>
-	  CIT (Company Income Tax) :<br>
-	  <input type="number" id="CIT"><br>
-	  VAT (Value Added Tax) :<br>
-	  <input type="number" id="VAT"><br>
-	  Healthcare :<br>
-	  <input type="number" id="Health"><br>
+	  Company type : <br>
+	  <input type="text" id="type"><br>
+	  Tax :<br>
+	  <input type="number" id="tax"><br>
 	  </div>
       <div class="modal-footer">
-	  <button type="button" class="btn btn-secondary" onclick="proposeTaxes($('#PIT').val(), $('#CIT').val(), $('#VAT').val(), $('#Health').val());displayTaxes();$('#taxes-modal').modal('hide')">Propose</button>
+	  <button type="button" class="btn btn-secondary" onclick="proposeCustomTax($('#type').val(), $('#tax').val());displayCustomTaxes();$('#taxes-modal').modal('hide')">Propose</button>
         <button type="button" class="btn btn-secondary" onclick="$('#taxes-modal').modal('hide')">Close</button>
       </div>
     </div>
@@ -77,14 +74,16 @@
 </div>
 	</body>
 	<script>
+
+		var items;
 		var rev = $('#revisions').DataTable( {
 			"filter": true,
             "searching": true,
 			order: [[0, 'desc']]
 } );
-       async function displayTaxes() {
+       async function displayCustomTaxes() {
         rev.clear()
-         var taxes = await getTaxesVotes();
+         var taxes = await getCustomTaxes();
          
         var cols = [[]]
 		cols = cols.slice(1, 1)
@@ -99,20 +98,34 @@
         console.log(taxes2)
          for(var i = 0; i < taxes2.length;i++)
          {
-            rev.row.add([i, '<span class="h5">'+taxes2[i][4]+'</span><span class="h4">/'+taxes2[i][5]+'</span>', taxes2[i][0]+'%', taxes2[i][1]+'%', taxes2[i][2]+'%', taxes2[i][3]+'%', 
-            '<button class="btn btn-success b" onclick="voteTax(\''+i+'\', 1)">Yes</button>'+
-            '<button class="btn btn-warning b" onclick="voteTax(\''+i+'\', 0)">Abtain</button>'+
-            '<button class="btn btn-danger b" onclick="voteTax(\''+i+'\',-1)">No</button>'
+            rev.row.add([i, findCompanyType(items, taxes2[i][0])+'', taxes2[i][1]+'%', taxes2[i][2]+'/'+taxes2[i][3],
+            '<button class="btn btn-success b" onclick="voteCustomTax(\''+i+'\', 1)">Yes</button>'+
+            '<button class="btn btn-warning b" onclick="voteCustomTax(\''+i+'\', 0)">Abtain</button>'+
+            '<button class="btn btn-danger b" onclick="voteCustomTax(\''+i+'\',-1)">No</button>'
         ]).draw();
          }
        }
 
        $('docment').ready(() =>{
-        displayTaxes();
+        displayCustomTaxes();
        })
+	   <!-- Vendor JS Files -->
+	  $.ajax({
+    url: "codes.csv",
+    async: false,
+    success: function (csvd) {
+        items = $.csv.toObjects(csvd);
+		console.log(items);
+	}});
 
+	function findCompanyType(list, caen) {
+		for(var i = 0; i < list.length; i++) {
+			if(list[i].Cod == caen) {
+				return list[i].Titlu;
+			}
+		}
+	}
 	</script>
-      <!-- Vendor JS Files -->
 
 
  

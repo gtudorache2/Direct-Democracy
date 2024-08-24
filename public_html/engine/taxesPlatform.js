@@ -16,9 +16,9 @@ const taxesABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "string",
 				"name": "companyID",
-				"type": "uint256"
+				"type": "string"
 			},
 			{
 				"internalType": "int8",
@@ -27,6 +27,34 @@ const taxesABI = [
 			}
 		],
 		"name": "proposeCustomTaxes",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int8",
+				"name": "PIT",
+				"type": "int8"
+			},
+			{
+				"internalType": "int8",
+				"name": "CIT",
+				"type": "int8"
+			},
+			{
+				"internalType": "int8",
+				"name": "VAT",
+				"type": "int8"
+			},
+			{
+				"internalType": "int8",
+				"name": "Health",
+				"type": "int8"
+			}
+		],
+		"name": "proposeStandardTaxes",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -58,27 +86,17 @@ const taxesABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "int8",
-				"name": "PIT",
-				"type": "int8"
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
 			},
 			{
-				"internalType": "int8",
-				"name": "CIT",
-				"type": "int8"
-			},
-			{
-				"internalType": "int8",
-				"name": "VAT",
-				"type": "int8"
-			},
-			{
-				"internalType": "int8",
-				"name": "Health",
-				"type": "int8"
+				"internalType": "int256",
+				"name": "v",
+				"type": "int256"
 			}
 		],
-		"name": "proposeStandardTaxes",
+		"name": "vote",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -96,7 +114,7 @@ const taxesABI = [
 				"type": "int256"
 			}
 		],
-		"name": "vote",
+		"name": "voteCustom",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -138,9 +156,22 @@ const taxesABI = [
 						"type": "int256"
 					}
 				],
-				"internalType": "struct Owner.cStandardTaxesProp",
+				"internalType": "struct Taxes.cStandardTaxesProp",
 				"name": "taxes",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCustomTaxes",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "taxes",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -181,7 +212,7 @@ function calcHeight(value) {
   return newHeight;
 }
 
-const ADDRESS = "0x5cd252bc403Cb6b169351b443D14628700dEeBf5"
+const ADDRESS = "0xB7CA3cDcF84A45060FC1854FB96B79d6B6903B87"
 
 
 
@@ -197,6 +228,21 @@ return await taxes.methods.getCurrentTaxes().call(function (err, res) {
 	    return
 	  }
 	  console.log(res)
+	return res
+})}
+
+async function getCustomTaxes()
+{
+return await taxes.methods.getCustomTaxes().call(function (err, res) {
+	  if (err) {
+	    console.log("An error occurred", err)
+	    return
+	  }
+	  console.log(res)
+	  res = res.split("|");
+	  for(var i = 0; i < res.length;i++) {
+		res[i] = res[i].split('#');
+	  }
 	return res
 })}
 
@@ -246,6 +292,28 @@ try
 	    }
 	    alert('Success !')
 	    displayTaxes()
+	    console.log("Hash of the transaction: " + res)
+	  })
+}
+catch (e)
+{
+	alert(e)
+}}
+
+function proposeCustomTax(companyID, tax)
+{
+var e2
+try
+{
+	taxes.methods
+	.proposeCustomTaxes(companyID, tax)
+	  .send({ from: account.address, gas:"3500000" }, function (err, res) {
+	    if (err) {
+	      alert(err)
+	      return
+	    }
+	    alert('Success !')
+	    displayCustomTaxes()
 	    console.log("Hash of the transaction: " + res)
 	  })
 }

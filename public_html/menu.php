@@ -1,4 +1,5 @@
 
+<script src="https://cdn.jsdelivr.net/npm/web3@1.2.11/dist/web3.min.js"></script>
 <!-- Vendor CSS Files -->
 <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,8 +37,8 @@
         <a href="#" role="button" aria-haspopup="true" aria-expanded="false">Taxes<i class="bi bi-chevron-down"></i></a>
           <ul class="dropdown-menu">
             <li class="dropdown-item"><a href="basic_taxes.php">Basic taxes</a></li>
-            <li class="dropdown-item"><a href="CIT.php">Company Income Taxes</a></li>
-            <li class="dropdown-item"><a href="other_taxes.php">Other Taxes</a></li>
+            <li class="dropdown-item"><a href="custom_taxes.php">Company Income Taxes</a></li>
+            <!--<li class="dropdown-item"><a href="other_taxes.php">Other Taxes</a></li>-->
             <div class="dropdown-divider"></div>
             <li class="dropdown-item"><a href="company_types.php">Company Types</a></li>
             </ul>

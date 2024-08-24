@@ -1,38 +1,6 @@
 var globId;
 const ERC20TransferABI = [
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "LawCreated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "oldOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnerSet",
-		"type": "event"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -78,6 +46,43 @@ const ERC20TransferABI = [
 		],
 		"stateMutability": "payable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "LawCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "oldOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnerSet",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -157,11 +162,6 @@ const ERC20TransferABI = [
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -363,13 +363,18 @@ function calcHeight(value) {
   let newHeight = numberOfLineBreaks + 2;
   return newHeight;
 }
+var account;
+async function connectAccounts() {
+	await window.ethereum.request({ method: "eth_requestAccounts" });
+    account = await web3.eth.getAccounts();
+	account = {"address": account[0]}
+	console.log(account)
+}
+const DAI_ADDRESS = "0x32e6Cb6b9E712Ad414E0f50F0366D0e55b267Adb"
 
-const DAI_ADDRESS = "0xc1340DD87555962F490A71E5931C6b45A7d62c6A"
+connectAccounts();
+const web3 = new Web3(window.ethereum)
 
-
-const web3 = new Web3("ws://localhost:8545")
-
-const account =web3.eth.accounts.privateKeyToAccount("0xd05e959fa119ef4950be2e113e16af864aa093bd418cb1d908394dc50cd4bddb");
 
 const daiToken = new web3.eth.Contract(ERC20TransferABI, DAI_ADDRESS)
 
@@ -410,12 +415,13 @@ async function getLastLaws()
 	var laws = Array();
 	var count = await getLawCount();
 
-	if (count > 10) count = 10
-
-	for (var i = count-1; i >= 0; i--)
+	if (count > 10)  count = BigInt(10);
+	var i = 0n;
+	for (i = count-1; i >= 0; i--)
 	{
 		laws.push(await getLaw(i))
 	}
+	
 	return laws;
 }
 
