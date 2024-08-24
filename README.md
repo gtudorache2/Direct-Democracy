@@ -1,4 +1,7 @@
 # DD
+
+Donate to : https://revolut.me/gabrie5mk9
+
 Direct Democracy system on the Ethereum blockhain...
 
 The backend is written in Solidity, the frontend is written in Javascript with a hint of PHP and it includes :
